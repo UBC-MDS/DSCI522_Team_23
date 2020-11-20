@@ -43,7 +43,7 @@ We believe that efficient meetings are the cornorstone of success at this course
 
  - Timing
  
-The team will meet through video conferencing twice every week. Below is the meeting schedule: 
+The team will meet through video conferencing twice every week. Below is the meeting schedule (Vancouver time): 
 
 | Day      | Time      | Leader1             | Leader 2           |
 |----------|-----------|---------------------|--------------------|
@@ -53,9 +53,9 @@ The team will meet through video conferencing twice every week. Below is the mee
  - Content and format
  
 In the first meeting of a week, we will briefly overview the week's work and set expectations. All team-members should familiarize themselves with the milestone requirements beforehand the meeting. 
-The bulk of meeting time will be dedicated to reaching consensus over the skeleton of the week's work, as well as appropriate timelines. 
+The bulk of meeting time will be dedicated to reaching consensus over the skeleton of the week's work, as well as appropriate timelines. Each team member can expect to know which part of the work to work on after the meeting. 
 
-All team-members are expected to start working on their parts of the work by the time of second meeting, which should take place on Thursday. The first part of the second meeting should be focused on reporting work progress and identify necessary adjustments to the overall workplan. Team-members are expected to be engaged in listening and giving their feedback.
+All team-members are expected to have started their parts of the work by the time of second meeting, which should take place on Thursday. The first part of the second meeting should be focused on reporting work progress and identify necessary adjustments to the overall workplan. Team-members are expected to be engaged in listening and giving their feedback.
 The second part of the second meeting is dedicated to discussing each team-member's direction of work for the latter half of the week. 
 
  - Leadership
@@ -86,6 +86,17 @@ Taking into account MDS's overall curricular design and purposes, the team will 
 (c) Comprehensive understanding of files and the directory structure.
 
 
-## Individual availability
+## Availability of teammembers
 
 Team-members should dedicate themselves in a healthy manner to the project, like to all other MDS commitments. 
+We maintain full-time commitment to communication from team-members. Taking into account time zone differences, the following table will guide the temporal aspect of communication among the team (Vancouver time):
+
+| Team-member         | Time dedicated to the project | Time able to reply messages and answer questions | Time unavailable |
+|---------------------|-------------------------------|--------------------------------------------------|------------------|
+| Jiajie (Joshua) Lim |                               |                                                  |                  |
+| Ling (Elina) Lin    |                               |                                                  |                  |
+| Jiacheng Wang       |                               |                                                  |                  |
+| Kangyu (Mark) Wang  | 1 pm - 12 pm                  | 12 pm - 4 am                                     | 4 am - 1 pm      |
+
+When unforeseen circumstances arise, they should be made known to the whole team as soon as possible. 
+
