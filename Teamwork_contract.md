@@ -93,9 +93,9 @@ We maintain full-time commitment to communication from team-members. Taking into
 
 | Team-member         | Time dedicated to the project | Time able to reply messages and answer questions | Time unavailable |
 |---------------------|-------------------------------|--------------------------------------------------|------------------|
-| Jiajie (Joshua) Lim |                               |                                                  |                  |
+| Jiajie (Joshua) Lim | 6 pm - 12 am                  |                                                  | Mornings         |
 | Ling (Elina) Lin    |                               |                                                  |                  |
-| Jiacheng Wang       |                               |                                                  |                  |
+| Jiacheng Wang       | 9 am - 5 pm                   | 9 am - 5 pm                                      | Sundays          |
 | Kangyu (Mark) Wang  | 1 pm - 12 pm                  | 12 pm - 4 am                                     | 4 am - 1 pm      |
 
 When unforeseen circumstances arise, they should be made known to the whole team as soon as possible. 
