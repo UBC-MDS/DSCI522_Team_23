@@ -37,7 +37,9 @@ EDA figure:
 
 - We will be plotting a histogram on all the variables to gain insight into the probability distribution that the dataset follows. With a histogram, it is easy for us to see how the data is distributed. Also, scatterplot will be used to show the relationship between two variables. If the points between two variables resemble a straight line, this indicates that the relationship between the two variables we have is approximately linear. 
 
+### Sharing Results of Analysis
 
+We would compare the results of our cross-validation analysis to test analysis and see whether there exists any overfitting or underfitting in our model. Also, we would return the confusion matrix of model performance on the test data to check for misclassification errors. 
 
 
 ### References
