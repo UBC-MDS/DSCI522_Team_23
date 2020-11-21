@@ -24,10 +24,18 @@ Moreover, we will also attempt to look for the correlation between the explanato
 
 ### Analysis
 
-The k-nearest neighbors (k-nn) algorithm will be used to build a regression model to predict the quality score of the wine, including white and red wine. All variables included in the original dataset will be used in fitting our model. Since there are no missing values in our dataset, there is no need for any imputation. 
-Also, the support vector machines (SVMs) with RBF kernel will be our second model in predicting the quality score of wine. We are hoping to see improvement in our model, given the support vectors. Lastly, we will also include the most commonly used regression model - Multiple Linear Regression (MLR). It is an extension of the Simple Linear Regression (SLR) that involves more than one explanatory variable. From the regression model, we can identify trends and relationships between variables. Most of our analysis will be done using Python and R programming languages (R Core Team 2019; Van Rossum and Drake 2009). 
+The k-nearest neighbors (k-nn) algorithm will be used to build a classification model to predict the quality score of the wine, including white and red wine. All variables included in the original dataset will be used in fitting our model. Since there are no missing values in our dataset, there is no need for any imputation. 
+Also, the support vector machines (SVMs) with RBF kernel will be our second model in predicting the quality score of wine. We are hoping to see improvement in our model, given the support vectors. Most of our analysis will be done using Python and R programming languages (R Core Team 2019; Van Rossum and Drake 2009). 
 
+### Exploratory Data Analysis (EDA)
 
+EDA table:
+
+- We will be using python `data.info()` to check for information on our data. From this table, we can check for the data type of each column and look for missing values contained in every column. If there are any missing values, we would want to clean the data first before proceeding with any analysis. Also, `data.describe` is also useful in identifying the minimum, maximum, and mean of each numerical columns. We would want to double-check if the values returned from the table are 'acceptable'. 
+
+EDA figure:
+
+- We will be plotting a histogram on all the variables to gain insight into the probability distribution that the dataset follows. With a histogram, it is easy for us to see how the data is distributed. Also, scatterplot will be used to show the relationship between two variables. If the points between two variables resemble a straight line, this indicates that the relationship between the two variables we have is approximately linear. 
 
 
 
