@@ -22,6 +22,13 @@ From the data set provided, we are interested in predicting the wine quality (wh
 
 Moreover, we will also attempt to look for the correlation between the explanatory variables, to see if there are any multicollinearity occurs. Assuming all variables are independent, if the variables are correlated and the degree of correlation between variables is high enough, it can be a problem when fitting the model and the result may not be accurate. 
 
+### Analysis
+
+The k-nearest neighbors (k-nn) algorithm will be used to build a regression model to predict the quality score of the wine, including white and red wine. All variables included in the original dataset will be used in fitting our model. Since there are no missing values in our dataset, there is no need for any imputation. 
+Also, the support vector machines (SVMs) with RBF kernel will be our second model in predicting the quality score of wine. We are hoping to see improvement in our model, given the support vectors. Lastly, we will also include the most commonly used regression model - Multiple Linear Regression (MLR). It is an extension of the Simple Linear Regression (SLR) that involves more than one explanatory variable. From the regression model, we can identify trends and relationships between variables. Most of our analysis will be done using Python and R programming languages (R Core Team 2019; Van Rossum and Drake 2009). 
+
+
+
 
 
 
@@ -31,4 +38,7 @@ Cortez, P., Cerdeira, A., Almeida, F., Matos, T., &amp; Reis, J. (2009, June 09)
 
 Dua, Dheeru, and Casey Graff. 2017. “UCI Machine Learning Repository.” University of California, Irvine, School of Information; Computer Sciences. http://archive.ics.uci.edu/ml.
 
+R Core Team. 2019. R: A Language and Environment for Statistical Computing. Vienna, Austria: R Foundation for Statistical Computing. https://www.R-project.org/.
+
+Van Rossum, Guido, and Fred L. Drake. 2009. Python 3 Reference Manual. Scotts Valley, CA: CreateSpace.
 
