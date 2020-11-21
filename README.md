@@ -1,15 +1,34 @@
-# Prediction of Wine Quality based on physicochemical tests 
+# Prediction of Wine Quality based on Physicochemical Tests 
 
 ### Data
 
-The data sets used in this project are of the prediction of wine quality based on physicochemical tests, related to red and white vinho verde wine samples, from the north of Portugal. The data were created by Paulo Cortez at the University of Minho, Guimarães, Portugal. It was sourced from the UCI Machine Learning Repository (Dua and Graff 2017) and can be found [here](https://archive.ics.uci.edu/ml/datasets/Wine+Quality), specifically this [file](https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/). The data provided only have physicochemical (inputs) and sensory (the output) variables available (e.g. there is no data about grape types, wine brand, wine selling price, etc.). There are a total of 4898 number of instances in our combined dataset of red wine and white wine.
+The data sets used in this project are of the prediction of wine quality based on physicochemical tests, related to red and white vinho verde wine samples, from the north of Portugal. The data were created by Paulo Cortez at the University of Minho, Guimarães, Portugal (Cortez, Cerdeira, Almeida, Matos, &amp; Reis, 2009). It was sourced from the UCI Machine Learning Repository (Dua and Graff 2017) and can be found [here](https://archive.ics.uci.edu/ml/datasets/Wine+Quality), specifically this [file](https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/). The data provided only have physicochemical (inputs) and sensory (the output) variables available (e.g. there is no data about grape types, wine brand, wine selling price, etc.). There are a total of 4898 instances in our combined dataset of red wine and white wine.
 
+### Research Question
 
+From the data set provided, we are interested in predicting the wine quality (white wine and red wine) based on the physicochemical tests. We are engaged in predicting the quality score (score between 0 and 10) of a wine based on variables including:
+
+- fixed acidity
+- volatile acidity
+- citric acid
+- residual sugar
+- chlorides
+- free sulfur dioxide
+- total sulfur dioxide
+- density
+- pH
+- sulphates
+- alcohol
+
+Moreover, we will also attempt to look for the correlation between the explanatory variables, to see if there are any multicollinearity occurs. Assuming all variables are independent, if the variables are correlated and the degree of correlation between variables is high enough, it can be a problem when fitting the model and the result may not be accurate. 
 
 
 
 
 ### References
 
+Cortez, P., Cerdeira, A., Almeida, F., Matos, T., &amp; Reis, J. (2009, June 09). Modeling wine preferences by data mining from physicochemical properties. Retrieved November 21, 2020, from https://www.sciencedirect.com/science/article/abs/pii/S0167923609001377?via=ihub
+
 Dua, Dheeru, and Casey Graff. 2017. “UCI Machine Learning Repository.” University of California, Irvine, School of Information; Computer Sciences. http://archive.ics.uci.edu/ml.
+
 
