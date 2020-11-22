@@ -4,6 +4,13 @@
 
 The data sets used in this project are of the prediction of wine quality based on physicochemical tests, related to red and white vinho verde wine samples, from the north of Portugal. The data were created by Paulo Cortez at the University of Minho, Guimarães, Portugal (Cortez, Cerdeira, Almeida, Matos, &amp; Reis, 2009). It was sourced from the UCI Machine Learning Repository (Dua and Graff 2017) and can be found [here](https://archive.ics.uci.edu/ml/datasets/Wine+Quality), specifically this [file](https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/). The data provided only have physicochemical (inputs) and sensory (the output) variables available (e.g. there is no data about grape types, wine brand, wine selling price, etc.). There are a total of 4898 instances in our combined dataset of red wine and white wine.
 
+To download the data, please run the following commands in the root directory:
+```
+python src/Download_file.py --source=https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv --destination=data/winequality-red.csv
+
+python src/Download_file.py --source=https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-white.csv --destination=data/winequality-white.csv
+```
+
 ### Research Question
 
 From the data set provided, we are interested in predicting the wine quality (white wine and red wine) based on the physicochemical tests. We are engaged in predicting the quality score (score between 0 and 10) of a wine based on variables including:
