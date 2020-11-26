@@ -1,8 +1,8 @@
 # author: Kangyu (Mark) Wang
 # date: 2020-11-22
 
-"""This script read our data from online source and save them as csv file.
-Usage: docopt.py --source=<source> --destination=<destination>
+"""This script reads our data from online source and save them as csv file.
+Usage: Download_file.py --source=<source> --destination=<destination>
 
 Options:
 --source=<source>               Takes the unquoted url of the online source of data (this is a required option)

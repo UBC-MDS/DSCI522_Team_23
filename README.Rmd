@@ -63,7 +63,7 @@ To replicate the analysis, clone this GitHub repository, install the [dependenci
 python src/Download_file.py --source=https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv --destination=data/winequality-red.csv
 python src/Download_file.py --source=https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-white.csv --destination=data/winequality-white.csv
 # pre-process data 
-TO DO
+python src/Preprocessing.py --raw_white=data/winequality-white.csv --raw_red=data/winequality-white.csv --preprocessed=data/winequality-all.csv
 # run eda report
 TO DO
 # create exploratory data analysis figure and write to file 
