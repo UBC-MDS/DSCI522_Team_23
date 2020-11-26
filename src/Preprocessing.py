@@ -22,10 +22,7 @@ opt = docopt(__doc__)
 def main(opt):
     raw_white = opt["--raw_white"]
     raw_red = opt["--raw_red"]
-    # raw_white = "./data/winequality-white.csv"
-    # raw_red = "./data/winequality-white.csv"
     preprocessed_train = opt["--preprocessed_train"]
-    # preprocessed = "./data/winequality-all.csv"
     preprocessed_test = opt["--preprocessed_test"]
 
     # Rread in data
