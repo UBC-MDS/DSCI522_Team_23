@@ -12,19 +12,25 @@ Options:
 --quality_alcohol_path=<quality_alcohol_path>                           Takes the unquoted relative path to place the output png file depicting the relationship between wine quality and alcohol
 """
 
+import altair as alt
 from docopt import docopt
 import numpy as np
 import pandas as pd
-import altair as alt
+import sys
+
 
 opt = docopt(__doc__)
 
 
 def main(opt):
     preprocessed_train = opt["--preprocessed_train"]
-    # preprocessed_train = "../data/winequality-train.csv"
-    # Rread in data
-    wine_train = pd.read_csv(preprocessed_train)
+
+    # Read in data
+    try:
+        wine_train = pd.read_csv(preprocessed_train)
+    except FileNotFoundError:
+        print("Input csv file of train set does not exist.")
+        sys.exit(1)
 
     # Create visualizations
     wine_train["quality"] = wine_train["quality"].astype("category")

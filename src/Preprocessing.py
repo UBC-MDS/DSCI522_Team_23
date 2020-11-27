@@ -28,7 +28,7 @@ def main(opt):
     preprocessed_train = opt["--preprocessed_train"]
     preprocessed_test = opt["--preprocessed_test"]
 
-    # Rread in data
+    # Read in data
     try:
         white_wine = pd.read_csv(raw_white, sep=";")
     except FileNotFoundError:
