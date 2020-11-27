@@ -433,9 +433,9 @@ summary {
 python src/Download_file.py --source=https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv --destination=data/winequality-red.csv
 python src/Download_file.py --source=https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-white.csv --destination=data/winequality-white.csv
 # pre-process data 
-TO DO
-# run eda report
-TO DO
+python src/Preprocessing.py --raw_white=data/winequality-white.csv --raw_red=data/winequality-red.csv --preprocessed_train=data/winequality-train.csv --preprocessed_test=data/winequality-test.csv
+# create exploratory data visualizations
+python src/EDA.py --preprocessed_train=data/winequality-train.csv --quality_fixed_acidity_path=results/quality_fixed_acidity.png --quality_volatile_acidity_path=results/quality_volatile_acidity.png --quality_free_sulfur_dioxide_path=results/quality_free_sulfur_dioxide.png --quality_alcohol_path=results/quality_alcohol.png  
 # create exploratory data analysis figure and write to file 
 TO DO
 # tune model
@@ -461,6 +461,23 @@ TO DO</code></pre>
 </div>
 <div id="references" class="section level1">
 <h1>References</h1>
+<p><span class="citation">R Core Team (2020)</span> <span class="citation">Van Rossum and Drake (2009)</span></p>
+<p><span class="citation">Cortez et al. (2009)</span></p>
+<p><span class="citation">Dua and Graff (2017)</span></p>
+<div id="refs" class="references hanging-indent">
+<div id="ref-cortez2009modeling">
+<p>Cortez, Paulo, António Cerdeira, Fernando Almeida, Telmo Matos, and José Reis. 2009. “Modeling Wine Preferences by Data Mining from Physicochemical Properties.” <em>Decision Support Systems</em> 47 (4): 547–53.</p>
+</div>
+<div id="ref-Dua2019">
+<p>Dua, Dheeru, and Casey Graff. 2017. “UCI Machine Learning Repository.” University of California, Irvine, School of Information; Computer Sciences. <a href="http://archive.ics.uci.edu/ml">http://archive.ics.uci.edu/ml</a>.</p>
+</div>
+<div id="ref-R">
+<p>R Core Team. 2020. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.</p>
+</div>
+<div id="ref-Python">
+<p>Van Rossum, Guido, and Fred L. Drake. 2009. <em>Python 3 Reference Manual</em>. Scotts Valley, CA: CreateSpace.</p>
+</div>
+</div>
 </div>
 
 

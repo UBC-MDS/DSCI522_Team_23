@@ -10,8 +10,9 @@ Options:
 """
 
 from docopt import docopt
-import requests
 from os import path
+import re
+import requests
 import sys
 
 opt = docopt(__doc__)
@@ -21,8 +22,16 @@ def main(opt):
     source = opt["--source"]
     destination = opt["--destination"]
 
-    if path.exists(destination) == False:
-        raise NameError("The path to destination file does not exist.")
+    # Check over-writing
+    if path.exists(destination) == True:
+        while True:
+            user_input_continue = input(
+                "The destination file already exists. Are you sure that you want to over-write it? Y/N"
+            )
+            if re.match(r"^[Nn]", user_input_continue):
+                sys.exit(1)
+            if re.match(r"^[Yy]", user_input_continue):
+                break
 
     try:
         req = requests.get(source)
