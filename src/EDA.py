@@ -1,4 +1,4 @@
-# author: Kangyu (Mark) Wang
+# author: Kangyu (Mark) Wang, Jiacheng Wang
 # date: 2020-11-26
 
 """This script reads the train split csv file and produces exploratory data visualizations.
@@ -134,6 +134,180 @@ def main(opt):
     quality_alcohol = alcohol + error
     quality_alcohol.save(quality_alcohol_path)
 
+    
+    
+    
+    ##------------------------------------------
+    ## ADDED CHART
+    ##------------------------------------------
+    
+    ##quality ~ citric acid
+    
+    quality_citric_acid_path = opt["--quality_citric_acid_path"]
+    citric_acid = (
+    alt.Chart(wine_train)
+    .mark_bar()
+    .encode(
+        x=alt.X("quality"),
+        y=alt.Y("mean(citric acid)", scale=alt.Scale(domain=(0.2, 0.45))),
+        color=alt.Color("quality", title="Wine Grade"),
+    )
+    .properties(width=400)
+    )
 
+    error = (
+        alt.Chart(wine_train)
+        .mark_errorbar()
+        .encode(x=alt.X("quality"), y=alt.Y("citric acid:Q"))
+    )
+
+    quality_citric_acid = citric_acid + error
+    quality_citric_acid.save(quality_citric_acid_path)
+    
+    
+    
+    #quality ~ residual sugar
+    quality_residual_sugar_path = opt["--quality_residual_sugar_path"]
+    residual_sugar = (
+    alt.Chart(wine_train)
+        .mark_bar()
+        .encode(
+            x=alt.X("quality"),
+            y=alt.Y("mean(residual sugar)"),
+            color=alt.Color("quality", title="Wine Grade"),
+        )
+        .properties(width=400)
+    )
+    
+    error = (
+        alt.Chart(wine_train)
+        .mark_errorbar()
+        .encode(x=alt.X("quality"), y=alt.Y("residual sugar:Q"))
+    )
+    
+    quality_residual_sugar = residual_sugar + error
+    quality_residual_sugar.save(quality_residual_sugar_path)
+
+    
+    
+    ## quality ~ chlorides
+    quality_chlorides_path = opt["--quality_chlorides_path"]
+    chlorides = (
+    alt.Chart(wine_train)
+        .mark_bar()
+        .encode(
+            x=alt.X("quality"),
+            y=alt.Y("mean(chlorides)"),
+            color=alt.Color("quality", title="Wine Grade"),
+        )
+        .properties(width=400)
+    )
+    
+    error = (
+        alt.Chart(wine_train)
+        .mark_errorbar()
+        .encode(x=alt.X("quality"), y=alt.Y("chlorides:Q"))
+    )
+    
+    quality_chlorides = chlorides + error
+    quality_chlorides.save(quality_chlorides_path)
+    
+    
+    
+    ## quality ~ total sulfur dioxide
+    quality_total_sulfur_dioxide_path = opt["--quality_total_sulfur_dioxide_path"]
+    total_sulfur_dioxide = (
+    alt.Chart(wine_train)
+        .mark_bar()
+        .encode(
+            x=alt.X("quality"),
+            y=alt.Y("mean(total sulfur dioxide)", scale=alt.Scale(domain=(95, 150))),
+            color=alt.Color("quality", title="Wine Grade"),
+        )
+        .properties(width=400)
+    )
+    
+    error = (
+        alt.Chart(wine_train)
+        .mark_errorbar()
+        .encode(x=alt.X("quality"), y=alt.Y("total sulfur dioxide:Q"))
+    )
+    
+    quality_total_sulfur_dioxide = total_sulfur_dioxide + error
+    quality_total_sulfur_dioxide.save(quality_total_sulfur_dioxide_path)
+
+
+    
+    ## quality ~ density
+    quality_density_path = opt["--quality_density_path"]
+    density = (
+    alt.Chart(wine_train)
+        .mark_bar()
+        .encode(
+            x=alt.X("quality"),
+            y=alt.Y("mean(density)", scale=alt.Scale(domain=(0.988, 0.998))),
+            color=alt.Color("quality", title="Wine Grade"),
+        )
+        .properties(width=400)
+    )
+    
+    error = (
+        alt.Chart(wine_train)
+        .mark_errorbar()
+        .encode(x=alt.X("quality"), y=alt.Y("density:Q"))
+    )
+    
+    quality_density = density + error
+    quality_density.save(quality_density_path)
+    
+    
+    ## quality ~ pH
+    quality_pH_path = opt["--quality_pH_path"]
+    pH = (
+    alt.Chart(wine_train)
+        .mark_bar()
+        .encode(
+            x=alt.X("quality"),
+            y=alt.Y("mean(pH)", scale=alt.Scale(domain=(3.2, 3.35))),
+            color=alt.Color("quality", title="Wine Grade"),
+        )
+        .properties(width=400)
+    )
+    
+    error = (
+        alt.Chart(wine_train)
+        .mark_errorbar()
+        .encode(x=alt.X("quality"), y=alt.Y("pH:Q"))
+    )
+    
+    quality_pH = pH + error
+    quality_pH.save(quality_pH_path)
+
+    
+    
+    ## quality ~ sulphates
+    quality_sulphates_path = opt["--quality_sulphates_path"]
+    sulphates = (
+    alt.Chart(wine_train)
+        .mark_bar()
+        .encode(
+            x=alt.X("quality"),
+            y=alt.Y("mean(sulphates)", scale=alt.Scale(domain=(0.4, 0.55))),
+            color=alt.Color("quality", title="Wine Grade"),
+        )
+        .properties(width=400)
+    )
+    
+    error = (
+        alt.Chart(wine_train)
+        .mark_errorbar()
+        .encode(x=alt.X("quality"), y=alt.Y("sulphates:Q"))
+    )
+    
+    quality_sulphates = sulphates + error
+    quality_sulphates.save(quality_sulphates_path)
+
+
+    
 if __name__ == "__main__":
     main(opt)
