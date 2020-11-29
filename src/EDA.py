@@ -2,10 +2,11 @@
 # date: 2020-11-26
 
 """This script reads the train split csv file and produces exploratory data visualizations.
-Usage: EDA.py --preprocessed_train=<preprocessed_train> --quality_fixed_acidity_path=<quality_fixed_acidity_path> --quality_volatile_acidity_path=<quality_volatile_acidity_path> --quality_free_sulfur_dioxide_path=<quality_free_sulfur_dioxide_path> --quality_alcohol_path=<quality_alcohol_path> --quality_citric_acid_path=<quality_citric_acid_path> --quality_residual_sugar_path=<quality_residual_sugar_path> --quality_chlorides_path=<quality_chlorides_path> --quality_total_sulfur_dioxide_path=<quality_total_sulfur_dioxide_path> --quality_density_path=<quality_density_path> --quality_pH_path=<quality_pH_path> --quality_sulphates_path=<quality_sulphates_path> 
+Usage: EDA.py --preprocessed_train=<preprocessed_train> --quality_count_path=<quality_count_path> --quality_fixed_acidity_path=<quality_fixed_acidity_path> --quality_volatile_acidity_path=<quality_volatile_acidity_path> --quality_free_sulfur_dioxide_path=<quality_free_sulfur_dioxide_path> --quality_alcohol_path=<quality_alcohol_path> --quality_citric_acid_path=<quality_citric_acid_path> --quality_residual_sugar_path=<quality_residual_sugar_path> --quality_chlorides_path=<quality_chlorides_path> --quality_total_sulfur_dioxide_path=<quality_total_sulfur_dioxide_path> --quality_density_path=<quality_density_path> --quality_ph_path=<quality_ph_path> --quality_sulphates_path=<quality_sulphates_path> 
 
 Options:
 --preprocessed_train=<preprocessed_train>                               Takes the unquoted relative path of the proprecessed train split as a csv file (this is a required option)
+--quality_count_path=<quality_count_path>                               Takes the unquoted relative path to place the output png file depicting the distribution of wine quality
 --quality_fixed_acidity_path=<quality_fixed_acidity_path>               Takes the unquoted relative path to place the output png file depicting the relationship between wine quality and fixed_acidity
 --quality_volatile_acidity_path=<quality_volatile_acidity_path>         Takes the unquoted relative path to place the output png file depicting the relationship between wine quality and volatile_acidity
 --quality_free_sulfur_dioxide_path=<quality_free_sulfur_dioxide_path>   Takes the unquoted relative path to place the output png file depicting the relationship between wine quality and free_sulfur_dioxide
@@ -15,7 +16,7 @@ Options:
 --quality_chlorides_path=<quality_chlorides_path>                       Takes the unquoted relative path to place the output png file depicting the relationship between wine quality and chlorides
 --quality_total_sulfur_dioxide_path=<quality_total_sulfur_dioxide_path> Takes the unquoted relative path to place the output png file depicting the relationship between wine quality and total_sulfur_dioxide
 --quality_density_path=<quality_density_path>                           Takes the unquoted relative path to place the output png file depicting the relationship between wine quality and density
---quality_pH_path=<quality_pH_path>                                     Takes the unquoted relative path to place the output png file depicting the relationship between wine quality and pH
+--quality_ph_path=<quality_ph_path>                                     Takes the unquoted relative path to place the output png file depicting the relationship between wine quality and ph
 --quality_sulphates_path=<quality_sulphates_path>                       Takes the unquoted relative path to place the output png file depicting the relationship between wine quality and sulphates
 """
 
@@ -42,6 +43,22 @@ def main(opt):
     # Create visualizations
     wine_train["quality"] = wine_train["quality"].astype("category")
     alt.data_transformers.disable_max_rows()
+
+    ## Distribution of outcome variable
+    quality_count_path = opt["--quality_count_path"]
+
+    count_chart = (
+        alt.Chart(wine_train)
+        .mark_bar(size=40)
+        .encode(
+            x=alt.X("quality:O", type="quantitative"),
+            y=alt.Y("count()"),
+            color=alt.Color("quality", title="Wine Grade"),
+        )
+        .properties(width=400)
+    )
+
+    count_chart.save(quality_count_path)
 
     ## Quality ~ fixed_acidity
     quality_fixed_acidity_path = opt["--quality_fixed_acidity_path"]
@@ -141,11 +158,7 @@ def main(opt):
     quality_alcohol = alcohol + error
     quality_alcohol.save(quality_alcohol_path)
 
-    ##------------------------------------------
-    ## ADDED CHART
-    ##------------------------------------------
-
-    ##quality ~ citric acid
+    ## quality ~ citric acid
 
     quality_citric_acid_path = opt["--quality_citric_acid_path"]
     citric_acid = (
@@ -168,7 +181,7 @@ def main(opt):
     quality_citric_acid = citric_acid + error
     quality_citric_acid.save(quality_citric_acid_path)
 
-    # quality ~ residual sugar
+    ## quality ~ residual sugar
     quality_residual_sugar_path = opt["--quality_residual_sugar_path"]
     residual_sugar = (
         alt.Chart(wine_train)
@@ -256,14 +269,14 @@ def main(opt):
     quality_density = density + error
     quality_density.save(quality_density_path)
 
-    ## quality ~ pH
-    quality_pH_path = opt["--quality_pH_path"]
-    pH = (
+    ## quality ~ ph
+    quality_ph_path = opt["--quality_ph_path"]
+    ph = (
         alt.Chart(wine_train)
         .mark_bar()
         .encode(
             x=alt.X("quality"),
-            y=alt.Y("mean(pH)", scale=alt.Scale(domain=(3.2, 3.35))),
+            y=alt.Y("mean(ph)", scale=alt.Scale(domain=(3.2, 3.35))),
             color=alt.Color("quality", title="Wine Grade"),
         )
         .properties(width=400)
@@ -272,11 +285,11 @@ def main(opt):
     error = (
         alt.Chart(wine_train)
         .mark_errorbar()
-        .encode(x=alt.X("quality"), y=alt.Y("pH:Q"))
+        .encode(x=alt.X("quality"), y=alt.Y("ph:Q"))
     )
 
-    quality_pH = pH + error
-    quality_pH.save(quality_pH_path)
+    quality_ph = ph + error
+    quality_ph.save(quality_ph_path)
 
     ## quality ~ sulphates
     quality_sulphates_path = opt["--quality_sulphates_path"]
