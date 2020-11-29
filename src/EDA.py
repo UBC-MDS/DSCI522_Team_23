@@ -52,7 +52,7 @@ def main(opt):
         .mark_bar()
         .encode(
             x=alt.X("quality"),
-            y=alt.Y("mean(fixed acidity)", scale=alt.Scale(domain=(6, 8.5))),
+            y=alt.Y("mean(fixed_acidity)", scale=alt.Scale(domain=(6, 8.5))),
             color=alt.Color("quality", title="Wine Grade"),
         )
         .properties(width=400)
@@ -61,7 +61,7 @@ def main(opt):
     error = (
         alt.Chart(wine_train)
         .mark_errorbar()
-        .encode(x=alt.X("quality"), y=alt.Y("fixed acidity:Q"))
+        .encode(x=alt.X("quality"), y=alt.Y("fixed_acidity:Q"))
     )
 
     quality_fixed_acidity = fixed_acidity + error
@@ -76,7 +76,7 @@ def main(opt):
         .mark_bar()
         .encode(
             x=alt.X("quality"),
-            y=alt.Y("mean(volatile acidity)", scale=alt.Scale(domain=(0.2, 0.6))),
+            y=alt.Y("mean(volatile_acidity)", scale=alt.Scale(domain=(0.2, 0.6))),
             color=alt.Color("quality", title="Wine Grade"),
         )
         .properties(width=400)
@@ -85,7 +85,7 @@ def main(opt):
     error = (
         alt.Chart(wine_train)
         .mark_errorbar()
-        .encode(x=alt.X("quality"), y=alt.Y("volatile acidity:Q"))
+        .encode(x=alt.X("quality"), y=alt.Y("volatile_acidity:Q"))
     )
 
     quality_volatile_acidity = volatile_acidity + error
@@ -101,7 +101,7 @@ def main(opt):
         .mark_bar()
         .encode(
             x=alt.X("quality"),
-            y=alt.Y("mean(free sulfur dioxide)", scale=alt.Scale(domain=(10, 55))),
+            y=alt.Y("mean(free_sulfur_dioxide)", scale=alt.Scale(domain=(10, 55))),
             color=alt.Color("quality", title="Wine Grade"),
         )
         .properties(width=400)
@@ -110,7 +110,7 @@ def main(opt):
     error = (
         alt.Chart(wine_train)
         .mark_errorbar()
-        .encode(x=alt.X("quality"), y=alt.Y("free sulfur dioxide:Q"))
+        .encode(x=alt.X("quality"), y=alt.Y("free_sulfur_dioxide:Q"))
     )
 
     quality_free_sulfur_dioxide = free_sulfur_dioxide + error
@@ -153,7 +153,7 @@ def main(opt):
         .mark_bar()
         .encode(
             x=alt.X("quality"),
-            y=alt.Y("mean(citric acid)", scale=alt.Scale(domain=(0.2, 0.45))),
+            y=alt.Y("mean(citric_acid)", scale=alt.Scale(domain=(0.2, 0.45))),
             color=alt.Color("quality", title="Wine Grade"),
         )
         .properties(width=400)
@@ -162,7 +162,7 @@ def main(opt):
     error = (
         alt.Chart(wine_train)
         .mark_errorbar()
-        .encode(x=alt.X("quality"), y=alt.Y("citric acid:Q"))
+        .encode(x=alt.X("quality"), y=alt.Y("citric_acid:Q"))
     )
 
     quality_citric_acid = citric_acid + error
@@ -175,7 +175,7 @@ def main(opt):
         .mark_bar()
         .encode(
             x=alt.X("quality"),
-            y=alt.Y("mean(residual sugar)"),
+            y=alt.Y("mean(residual_sugar)"),
             color=alt.Color("quality", title="Wine Grade"),
         )
         .properties(width=400)
@@ -184,7 +184,7 @@ def main(opt):
     error = (
         alt.Chart(wine_train)
         .mark_errorbar()
-        .encode(x=alt.X("quality"), y=alt.Y("residual sugar:Q"))
+        .encode(x=alt.X("quality"), y=alt.Y("residual_sugar:Q"))
     )
 
     quality_residual_sugar = residual_sugar + error
@@ -219,7 +219,7 @@ def main(opt):
         .mark_bar()
         .encode(
             x=alt.X("quality"),
-            y=alt.Y("mean(total sulfur dioxide)", scale=alt.Scale(domain=(95, 150))),
+            y=alt.Y("mean(total_sulfur_dioxide)", scale=alt.Scale(domain=(95, 150))),
             color=alt.Color("quality", title="Wine Grade"),
         )
         .properties(width=400)
@@ -228,7 +228,7 @@ def main(opt):
     error = (
         alt.Chart(wine_train)
         .mark_errorbar()
-        .encode(x=alt.X("quality"), y=alt.Y("total sulfur dioxide:Q"))
+        .encode(x=alt.X("quality"), y=alt.Y("total_sulfur_dioxide:Q"))
     )
 
     quality_total_sulfur_dioxide = total_sulfur_dioxide + error
