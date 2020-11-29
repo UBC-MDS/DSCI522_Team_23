@@ -15,6 +15,7 @@ import pandas as pd
 
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
+from sklearn.linear_model import Ridge
 from sklearn.model_selection import GridSearchCV
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder
@@ -69,16 +70,27 @@ def main(opt):
         ]
     )
 
-    # Create k-nn model
+    # Create models
     ## Dummy basedline model
 
-    knn_pipe = Pipeline(
-        [("preprocessor", preprocessor), ("knn", KNeighborsRegressor(metric=""))]
-    )
-    param_grid = {"knn__n_neighbors": [5 * x + 1 for x in range(10)]}
+    ## Ridge regression
+    ridge_pipe = Pipeline([("preprocessor", preprocessor), ("ridge", Ridge())])
+    ridge_param_grid = {"ridge__alpha": [0.001, 0.01, 0.1, 1, 10, 100, 1000]}
 
-    knn_reg = GridSearchCV(knn_pipe, param_grid)
+    ridge_reg = GridSearchCV(ridge_pipe, ridge_param_grid)
+    ridge_reg.fit(X_train, y_train)
+    pd.DataFrame(ridge_reg.cv_results_).sort_values("rank_test_score")
+
+    ## knn model
+    knn_pipe = Pipeline(
+        [("preprocessor", preprocessor), ("knn", KNeighborsRegressor())]
+    )
+    knn_param_grid = {"knn__n_neighbors": [5 * x + 1 for x in range(10)]}
+
+    knn_reg = GridSearchCV(knn_pipe, knn_param_grid)
     knn_reg.fit(X_train, y_train)
     pd.DataFrame(knn_reg.cv_results_).sort_values("rank_test_score")
 
-    knn_reg.score(X_train, y_train)
+    ##
+    print(f"R^2 on the train split is {knn_reg.score(X_train, y_train):.3f}")
+    print(f"R^2 on the test split is {knn_reg.score(X_test, y_test):.3f}")
