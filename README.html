@@ -387,7 +387,7 @@ summary {
 <p>This project aims to build machine learning models that predict a given wine’s quality based on its physicochemical characters. It uses classification and regression techniques k-nearest neighbors (k-NN) and support vector machines (SVMs) with RBF kernel.</p>
 <div id="data" class="section level2">
 <h2>Data</h2>
-<p>The data sets used in this project are of the prediction of wine quality based on physicochemical tests, related to red and white vinho verde wine samples, from the north of Portugal. The data were created by Paulo Cortez at the University of Minho, Guimarães, Portugal (Cortez, Cerdeira, Almeida, Matos, &amp; Reis, 2009). It was sourced from the UCI Machine Learning Repository (Dua and Graff 2017) and can be found <a href="https://archive.ics.uci.edu/ml/datasets/Wine+Quality">here</a>, specifically this <a href="https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/">file</a>. The data provided only have physicochemical (inputs) and sensory (the output) variables available (e.g. there is no data about grape types, wine brand, wine selling price, etc.). There are a total of 4898 instances in our combined dataset of red wine and white wine.</p>
+<p>The data sets used in this project are of the prediction of wine quality based on physicochemical tests, related to red and white vinho verde wine samples, from the north of Portugal. The data were created by Paulo Cortez et al at the University of Minho, Guimarães, Portugal <span class="citation">(2009)</span>. It was sourced from the UCI Machine Learning Repository <span class="citation">(Dua and Graff 2017)</span> and can be found <a href="https://archive.ics.uci.edu/ml/datasets/Wine+Quality">here</a>, specifically this <a href="https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/">file</a>. The data provided only have physicochemical (inputs) and sensory (the output) variables available (e.g. there is no data about grape types, wine brand, wine selling price, etc.). There are a total of 4898 instances in our combined dataset of red wine and white wine.</p>
 </div>
 <div id="research-question" class="section level2">
 <h2>Research Question</h2>
@@ -409,7 +409,7 @@ summary {
 </div>
 <div id="analysis" class="section level2">
 <h2>Analysis</h2>
-<p>The k-nearest neighbors (k-nn) algorithm will be used to build a classification model to predict the quality score of the wine, including white and red wine. All variables included in the original dataset will be used in fitting our model. Since there are no missing values in our dataset, there is no need for any imputation. Also, the support vector machines (SVMs) with RBF kernel will be our second model in predicting the quality score of wine. We are hoping to see improvement in our model, given the support vectors. Most of our analysis will be done using Python and R programming languages (R Core Team 2019; Van Rossum and Drake 2009).</p>
+<p>The k-nearest neighbors (k-nn) algorithm will be used to build a classification model to predict the quality score of the wine, including white and red wine. All variables included in the original dataset will be used in fitting our model. Since there are no missing values in our dataset, there is no need for any imputation. Also, the support vector machines (SVMs) with RBF kernel will be our second model in predicting the quality score of wine. We are hoping to see improvement in our model, given the support vectors. Most of our analysis will be done using Python and R programming languages <span class="citation">(R Core Team 2020; Van Rossum and Drake 2009)</span>.</p>
 </div>
 <div id="exploratory-data-analysis-eda" class="section level2">
 <h2>Exploratory Data Analysis (EDA)</h2>
@@ -435,7 +435,7 @@ python src/Download_file.py --source=https://archive.ics.uci.edu/ml/machine-lear
 # pre-process data 
 python src/Preprocessing.py --raw_white=data/winequality-white.csv --raw_red=data/winequality-red.csv --preprocessed_train=data/winequality-train.csv --preprocessed_test=data/winequality-test.csv
 # create exploratory data visualizations
-python src/EDA.py --preprocessed_train=data/winequality-train.csv --quality_fixed_acidity_path=results/quality_fixed_acidity.png --quality_volatile_acidity_path=results/quality_volatile_acidity.png --quality_free_sulfur_dioxide_path=results/quality_free_sulfur_dioxide.png --quality_alcohol_path=results/quality_alcohol.png  
+python src/EDA.py --preprocessed_train=data/winequality-train.csv --quality_fixed_acidity_path=results/quality_fixed_acidity.png --quality_volatile_acidity_path=results/quality_volatile_acidity.png --quality_free_sulfur_dioxide_path=results/quality_free_sulfur_dioxide.png --quality_alcohol_path=results/quality_alcohol.png --quality_citric_acid_path=results/quality_citric_acid.png --quality_residual_sugar_path=results/quality_residual_sugar.png --quality_chlorides_path=results/quality_chlorides.png --quality_total_sulfur_dioxide_path=results/quality_total_sulfur_dioxide.png --quality_density_path=results/quality_density.png --quality_pH_path=results/quality_pH.png --quality_sulphates_path=results/quality_sulphates.png
 # create exploratory data analysis figure and write to file 
 TO DO
 # tune model
@@ -459,11 +459,8 @@ TO DO</code></pre>
 </ul>
 </div>
 </div>
-<div id="references" class="section level1">
-<h1>References</h1>
-<p><span class="citation">R Core Team (2020)</span> <span class="citation">Van Rossum and Drake (2009)</span></p>
-<p><span class="citation">Cortez et al. (2009)</span></p>
-<p><span class="citation">Dua and Graff (2017)</span></p>
+<div id="references" class="section level1 unnumbered">
+<h1 class="unnumbered">References</h1>
 <div id="refs" class="references hanging-indent">
 <div id="ref-cortez2009modeling">
 <p>Cortez, Paulo, António Cerdeira, Fernando Almeida, Telmo Matos, and José Reis. 2009. “Modeling Wine Preferences by Data Mining from Physicochemical Properties.” <em>Decision Support Systems</em> 47 (4): 547–53.</p>
