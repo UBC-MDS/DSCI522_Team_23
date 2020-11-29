@@ -1,0 +1,65 @@
+---
+title: "Prediction of Wine Quality based on Physicochemical Tests"
+author: "JiaJie (JOSHUA) Lim, Ling (ELINA) Lin"
+date: "2020/11/26 (updated: `r Sys.Date()`)"
+output: 
+    html_document:
+        toc: true
+bibliography: refs.bib
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, fig.align = "center")
+library(knitr)
+```
+
+# Summary
+
+
+
+
+# Introduction
+
+As wine tasting is gaining increasing popularity, more efficient and lower-cost wine quality assessments are of urgent interest for the wine industry to support the growing consumption. Wine certification is an essential issue within such context and quality assessment is the key component of certification. Wine quality is generally determined by two types of tests: physiochemical (e.g. pH) tests and sensory (e.g. wine expert assessments) tests [1]. The relationship between chemical composition and human taste preferences is complex and not explicitly known [2]. Wine quality assurance still relies heavily on human expertise, thus time-consuming and expensive. 
+
+Researchers have explored the usage of machine learning techniques to assess wine quality, but still a great scope for improvement. Here we ask if we can use a machine learning algorithm to predict the quality of wine based on the physiochemical features. If a machine learning algorithm can successfully predict and quantify complex human sensory evaluation scores, such assessment could lead to more cost-efficient and accurate certification for wine quality assurance.
+
+# Methods
+
+## Data
+
+The data sets used in this project are of the prediction of wine quality
+based on physicochemical tests, related to red and white vinho verde
+wine samples, from the north of Portugal. The data were created by Paulo
+Cortez et al at the University of Minho, Guimarães, Portugal (2009). It
+was sourced from the UCI Machine Learning Repository (Dua and Graff
+2017) and can be found
+[here](https://archive.ics.uci.edu/ml/datasets/Wine+Quality),
+specifically this
+[file](https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/).
+The data provided only have physicochemical (inputs) and sensory (the
+output) variables available (e.g. there is no data about grape types,
+wine brand, wine selling price, etc.). There are a total of 4898
+instances in our combined dataset of red wine and white wine.
+
+## Analysis
+
+
+
+
+
+
+# Results & Discussion
+
+# References
+
+
+
+
+
+
+
+
+
+
