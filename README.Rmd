@@ -1,6 +1,6 @@
 ---
 title: "README"
-output: html_document
+output: md_document
 bibliography: doc/refs.bib
 ---
 
@@ -15,7 +15,7 @@ This project aims to build machine learning models that predict a given wine's q
 
 ## Data
 
-The data sets used in this project are of the prediction of wine quality based on physicochemical tests, related to red and white vinho verde wine samples, from the north of Portugal. The data were created by Paulo Cortez at the University of Minho, Guimarães, Portugal (Cortez, Cerdeira, Almeida, Matos, &amp; Reis, 2009). It was sourced from the UCI Machine Learning Repository (Dua and Graff 2017) and can be found [here](https://archive.ics.uci.edu/ml/datasets/Wine+Quality), specifically this [file](https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/). The data provided only have physicochemical (inputs) and sensory (the output) variables available (e.g. there is no data about grape types, wine brand, wine selling price, etc.). There are a total of 4898 instances in our combined dataset of red wine and white wine.
+The data sets used in this project are of the prediction of wine quality based on physicochemical tests, related to red and white vinho verde wine samples, from the north of Portugal. The data were created by Paulo Cortez et al at the University of Minho, Guimarães, Portugal [-@cortez2009modeling]. It was sourced from the UCI Machine Learning Repository [@Dua2019] and can be found [here](https://archive.ics.uci.edu/ml/datasets/Wine+Quality), specifically this [file](https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/). The data provided only have physicochemical (inputs) and sensory (the output) variables available (e.g. there is no data about grape types, wine brand, wine selling price, etc.). There are a total of 4898 instances in our combined dataset of red wine and white wine.
 
 ## Research Question
 
@@ -38,7 +38,7 @@ Moreover, we will also attempt to look for the correlation between the explanato
 ## Analysis
 
 The k-nearest neighbors (k-nn) algorithm will be used to build a classification model to predict the quality score of the wine, including white and red wine. All variables included in the original dataset will be used in fitting our model. Since there are no missing values in our dataset, there is no need for any imputation. 
-Also, the support vector machines (SVMs) with RBF kernel will be our second model in predicting the quality score of wine. We are hoping to see improvement in our model, given the support vectors. Most of our analysis will be done using Python and R programming languages (R Core Team 2019; Van Rossum and Drake 2009). 
+Also, the support vector machines (SVMs) with RBF kernel will be our second model in predicting the quality score of wine. We are hoping to see improvement in our model, given the support vectors. Most of our analysis will be done using Python and R programming languages [@R; @Python]. 
 
 ## Exploratory Data Analysis (EDA)
 
@@ -65,7 +65,7 @@ python src/Download_file.py --source=https://archive.ics.uci.edu/ml/machine-lear
 # pre-process data 
 python src/Preprocessing.py --raw_white=data/winequality-white.csv --raw_red=data/winequality-red.csv --preprocessed_train=data/winequality-train.csv --preprocessed_test=data/winequality-test.csv
 # create exploratory data visualizations
-python src/EDA.py --preprocessed_train=data/winequality-train.csv --quality_fixed_acidity_path=results/quality_fixed_acidity.png --quality_volatile_acidity_path=results/quality_volatile_acidity.png --quality_free_sulfur_dioxide_path=results/quality_free_sulfur_dioxide.png --quality_alcohol_path=results/quality_alcohol.png  
+python src/EDA.py --preprocessed_train=data/winequality-train.csv --quality_fixed_acidity_path=results/quality_fixed_acidity.png --quality_volatile_acidity_path=results/quality_volatile_acidity.png --quality_free_sulfur_dioxide_path=results/quality_free_sulfur_dioxide.png --quality_alcohol_path=results/quality_alcohol.png --quality_citric_acid_path=results/quality_citric_acid.png --quality_residual_sugar_path=results/quality_residual_sugar.png --quality_chlorides_path=results/quality_chlorides.png --quality_total_sulfur_dioxide_path=results/quality_total_sulfur_dioxide.png --quality_density_path=results/quality_density.png --quality_pH_path=results/quality_pH.png --quality_sulphates_path=results/quality_sulphates.png
 # create exploratory data analysis figure and write to file 
 TO DO
 # tune model
@@ -83,9 +83,3 @@ TO DO
   - knitr==1.29
   
 # References
-@R
-@Python
-
-@cortez2009modeling
-
-@Dua2019
