@@ -119,7 +119,7 @@ project:
     # tune and test model
     python src/ML_analyses.py --preprocessed_train=data/winequality-train.csv --preprocessed_test=data/winequality-test.csv --knn_results_path=results/knn_results.csv --ridge_results_path=results/ridge_results.csv
     # render final report
-Rscript -e "rmarkdown::render('doc/wine_quality_predict_report.Rmd')"
+    --Rscript -e "rmarkdown::render('doc/wine_quality_predict_report.Rmd')"--
 
 Dependencies
 ------------
