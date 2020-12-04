@@ -43,27 +43,6 @@ def main(opt):
         print("Input csv file of red wine does not exist.")
         sys.exit(1)
 
-    # Check over-writing
-    if path.exists(preprocessed_train) == True:
-        while True:
-            user_input_continue = input(
-                "The destination file for the train split already exists. Are you sure that you want to over-write it? Y/N"
-            )
-            if re.match(r"^[Nn]", user_input_continue):
-                sys.exit(1)
-            if re.match(r"^[Yy]", user_input_continue):
-                break
-
-    if path.exists(preprocessed_test) == True:
-        while True:
-            user_input_continue = input(
-                "The destination file for the test split already exists. Are you sure that you want to over-write it? Y/N"
-            )
-            if re.match(r"^[Nn]", user_input_continue):
-                sys.exit(1)
-            if re.match(r"^[Yy]", user_input_continue):
-                break
-
     # Combine two datasets
     white_wine["type"] = "white"
     red_wine["type"] = "red"
