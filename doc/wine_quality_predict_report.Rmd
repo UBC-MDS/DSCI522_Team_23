@@ -1,0 +1,94 @@
+---
+title: "Prediction of Wine Quality based on Physicochemical Tests"
+author: "JiaJie (JOSHUA) Lim, Ling (ELINA) Lin"
+date: "2020/11/26 (updated: `r Sys.Date()`)"
+output: 
+    html_document:
+        toc: true
+bibliography: refs.bib
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, fig.align = "center")
+library(knitr)
+```
+
+# Summary
+
+With the wine quality data, we are attempting to build a regression model to help us identify the best white and white variants of the Portuguese "Vinho Verde" wine. We plan to build a predictive regression model that can effectively predict the wine quality score given the physicochemical tests variable. 
+
+Our final regression model- k-nearest neighbors (k-NN) performs slightly better than the ridge regression model with a Root Mean Square Error (RMSE) of 0.698 on our k-NN test set, and 0.715 on our ridge regression test set. Even though k-NN has a better prediction score compared to ridge regression, the RMSE we obtained is still a pretty high value. A lower value of RMSE indicates a better fit and it is a good measure of how accurate our model predicts the response. 
+
+The model we obtained may not be the best model to be used in the industry to predict the wine quality score since the accuracy is pretty low (less than 0.5). Thus we recommend continuing study to improve this prediction model before we use this in production. 
+
+
+# Introduction
+
+As wine tasting is gaining increasing popularity, more efficient and lower-cost wine quality assessments are of urgent interest for the wine industry to support the growing consumption. Wine certification is an essential issue within such context and quality assessment is the key component of certification. Wine quality is generally determined by two types of tests: physiochemical (e.g. pH) tests and sensory (e.g. wine expert assessments) tests [@ebeler1999linking]. The relationship between chemical composition and human taste preferences is complex and not explicitly known [@legin2003evaluation]. Wine quality assurance still relies heavily on human expertise, thus time-consuming and expensive. 
+
+Researchers have explored the usage of machine learning techniques to assess wine quality, but still a great scope for improvement. Here we ask if we can use a machine learning algorithm to predict the quality of wine based on the physiochemical features. If a machine learning algorithm can successfully predict and quantify complex human sensory evaluation scores, such assessment could lead to more cost-efficient and accurate certification for wine quality assurance.
+
+# Methods
+
+## Data
+
+The data sets used in this project are of the prediction of wine quality
+based on physicochemical tests, related to red and white vinho verde
+wine samples, from the north of Portugal. The data were created by Paulo
+Cortez et al at the University of Minho, Guimarães, Portugal (2009). It
+was sourced from the UCI Machine Learning Repository (Dua and Graff
+2017) and can be found
+[here](https://archive.ics.uci.edu/ml/datasets/Wine+Quality),
+specifically this
+[file](https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/).
+The data provided only have physicochemical (inputs) and sensory (the
+output) variables available (e.g. there is no data about grape types,
+wine brand, wine selling price, etc.). There are a total of 4898
+instances in our combined dataset of red wine and white wine.
+
+## Analysis
+
+The k-nearest neighbors (k-nn) algorithm and linear regression (Ridge) were used to build regression models to predict wine quality (found in the quality column of the data set). We used all variables in the original data set to fit the model and carried out cross-validation. After carrying out parameter tuning together with cross-validation, we chose 6 for hyperparameter k of k-NN algorithm and 10 for alpha of Ridge. The R [@R] and Python [@Python] programming languages and the following R and Python packages were used to perform the analysis: tidyverse [@tidyverse], knitr [@knitr], docopt [@docopt], numpy [@harris2020array], Pandas [@mckinney2010data], altair [@2018-altair], scikit-learn [@scikit-learn]. The code used to perform the analysis and create this report can be found here: https://github.com/UBC-MDS/DSCI522_Team_23.
+
+
+
+# Results & Discussion
+
+To look at our distributions of the dataset, we started by plotting histograms and error bars for all our variables. We hope to find if there is any pattern or trends in our data. Most of our variables are evenly distributed across all our response variables (quality). However, there are some variables that actually show some distinction. From Figure 1 and Figure 2, we can actually see that as the alcohol value and citric acid increases, we tend to have a better wine quality. We did not choose to omit any variables in our preliminary analysis as we think that all features that consist of our data play an important role in quality prediction.
+
+```{r, fig.cap= "Figure 1. Alcohol vs Quality", out.width='50%'}
+knitr::include_graphics("../results/quality_alcohol.png")
+```
+
+```{r, fig.cap= "Figure 2. Citric Acid vs Quality", out.width='50%'}
+knitr::include_graphics("../results/quality_citric_acid.png")
+```
+
+
+We chose to use a simple regression model using the k-nearest neighbors' algorithm together with ridge regression for predictions. To find the model that best predicted the wine quality score, we performed the default 5-fold cross-validation to find the best k and best alpha for our prediction model. From figure 3 and 4, we observed the best optimal k was 6 and the best alpha value is 10. 
+
+
+```{r, fig.cap= "Figure 3. Ridge Results", out.width='30%'}
+knitr::include_graphics("../results/ridge_results.png")
+```
+
+```{r, fig.cap= "Figure 4. KNN Results", out.width='30%'}
+knitr::include_graphics("../results/knn_results.png")
+```
+
+Our prediction model performed not very well on our test data on both models with the best cross-validation score of 0.3595 for k-NN and best cross-validation score of 0.28518 for ridge regression. The test score we obtained is about 0.34 for k-NN and 0.3 for ridge regression. The "not so good" result obtained is probably due to the lack of feature engineering and feature importance selection. 
+
+There are a few suggestions to improve our model. First, we could try more power regression models such as Random Forests Algorithm. Also, given a relatively small number of features in the dataset, we could use forward selection to reduce the number of features. We could also engineer new features. One possible feature is the percentage of molecular sulphur dioxide which is the active form that acts as germicide and antioxidant in winemaking and is potentially associated with wine quality. The percentage of molecular sulphur dioxide can be calculated with the concentration of free SO2 and the pH [@sudraud1985anti].
+
+# References
+
+
+
+
+
+
+
+
+
+

@@ -27,7 +27,9 @@ def main(opt):
     raw_red = opt["--raw_red"]
     preprocessed_train = opt["--preprocessed_train"]
     preprocessed_test = opt["--preprocessed_test"]
-
+    # raw_white = "../data/winequality-white.csv"
+    # raw_red = "../data/winequality-red.csv"
+    # preprocessed_train = "../data/winequality-train.csv"
     # Read in data
     try:
         white_wine = pd.read_csv(raw_white, sep=";")
@@ -41,37 +43,23 @@ def main(opt):
         print("Input csv file of red wine does not exist.")
         sys.exit(1)
 
-    # Check over-writing
-    if path.exists(preprocessed_train) == True:
-        while True:
-            user_input_continue = input(
-                "The destination file for the train split already exists. Are you sure that you want to over-write it? Y/N"
-            )
-            if re.match(r"^[Nn]", user_input_continue):
-                sys.exit(1)
-            if re.match(r"^[Yy]", user_input_continue):
-                break
-
-    if path.exists(preprocessed_test) == True:
-        while True:
-            user_input_continue = input(
-                "The destination file for the test split already exists. Are you sure that you want to over-write it? Y/N"
-            )
-            if re.match(r"^[Nn]", user_input_continue):
-                sys.exit(1)
-            if re.match(r"^[Yy]", user_input_continue):
-                break
-
     # Combine two datasets
     white_wine["type"] = "white"
     red_wine["type"] = "red"
-    wine = pd.concat([red_wine, white_wine])
+    wine = pd.concat([red_wine, white_wine], ignore_index=True)
+    wine.columns = (
+        wine.columns.str.strip()
+        .str.lower()
+        .str.replace(" ", "_")
+        .str.replace("(", "")
+        .str.replace(")", "")
+    )
 
     # Create train and test splits
     wine_train, wine_test = train_test_split(wine, test_size=0.2)
     # Export file
-    wine_train.to_csv(preprocessed_train)
-    wine_test.to_csv(preprocessed_test)
+    wine_train.to_csv(preprocessed_train, index=False)
+    wine_test.to_csv(preprocessed_test, index=False)
 
 
 if __name__ == "__main__":

@@ -56,13 +56,12 @@ Analysis
 --------
 
 The k-nearest neighbors (k-nn) algorithm will be used to build a
-classification model to predict the quality score of the wine, including
+regression model to predict the quality score of the wine, including
 white and red wine. All variables included in the original dataset will
 be used in fitting our model. Since there are no missing values in our
-dataset, there is no need for any imputation. Also, the support vector
-machines (SVMs) with RBF kernel will be our second model in predicting
-the quality score of wine. We are hoping to see improvement in our
-model, given the support vectors. Most of our analysis will be done
+dataset, there is no need for any imputation. Also, the ridge regression model
+will be our second model in predicting the quality score of wine. We are hoping to see improvement in our
+model. Most of our analysis will be done
 using Python and R programming languages (R Core Team 2020; Van Rossum
 and Drake 2009).
 
@@ -98,6 +97,10 @@ analysis and see whether there exists any overfitting or underfitting in
 our model. Also, we would return the confusion matrix of model
 performance on the test data to check for misclassification errors.
 
+Report
+-----
+The final report can be found [here](https://htmlpreview.github.io/?https://raw.githubusercontent.com/UBC-MDS/DSCI522_Team_23/main/doc/wine_quality_predict_report.html).
+
 Usage
 -----
 
@@ -112,15 +115,11 @@ project:
     # pre-process data 
     python src/Preprocessing.py --raw_white=data/winequality-white.csv --raw_red=data/winequality-red.csv --preprocessed_train=data/winequality-train.csv --preprocessed_test=data/winequality-test.csv
     # create exploratory data visualizations
-    python src/EDA.py --preprocessed_train=data/winequality-train.csv --quality_fixed_acidity_path=results/quality_fixed_acidity.png --quality_volatile_acidity_path=results/quality_volatile_acidity.png --quality_free_sulfur_dioxide_path=results/quality_free_sulfur_dioxide.png --quality_alcohol_path=results/quality_alcohol.png --quality_citric_acid_path=results/quality_citric_acid.png --quality_residual_sugar_path=results/quality_residual_sugar.png --quality_chlorides_path=results/quality_chlorides.png --quality_total_sulfur_dioxide_path=results/quality_total_sulfur_dioxide.png --quality_density_path=results/quality_density.png --quality_pH_path=results/quality_pH.png --quality_sulphates_path=results/quality_sulphates.png
-    # create exploratory data analysis figure and write to file 
-    TO DO
-    # tune model
-    TO DO
-    # test model
-    TO DO
+    python src/EDA.py --preprocessed_train=data/winequality-train.csv --quality_count_path=results/quality_count.png --quality_fixed_acidity_path=results/quality_fixed_acidity.png --quality_volatile_acidity_path=results/quality_volatile_acidity.png --quality_free_sulfur_dioxide_path=results/quality_free_sulfur_dioxide.png --quality_alcohol_path=results/quality_alcohol.png --quality_citric_acid_path=results/quality_citric_acid.png --quality_residual_sugar_path=results/quality_residual_sugar.png --quality_chlorides_path=results/quality_chlorides.png --quality_total_sulfur_dioxide_path=results/quality_total_sulfur_dioxide.png --quality_density_path=results/quality_density.png --quality_ph_path=results/quality_ph.png --quality_sulphates_path=results/quality_sulphates.png
+    # tune and test model
+    python src/ML_analyses.py --preprocessed_train=data/winequality-train.csv --preprocessed_test=data/winequality-test.csv --knn_results_path=results/knn_results.csv --ridge_results_path=results/ridge_results.csv
     # render final report
-    TO DO
+    Rscript -e "rmarkdown::render('doc/wine_quality_predict_report.Rmd')"
 
 Dependencies
 ------------
