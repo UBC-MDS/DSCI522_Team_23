@@ -78,8 +78,18 @@ TO DO
 
 ## Dependencies
 - Python 3.8.3 and Python packages:
+  - ipykernel
   - docopt==0.6.2
+  - pandas==0.24.2
+  - altair>=4.1.0
+  - scikit-learn>=0.23.2
+
 - R version 4.0.3 and R packages:
   - knitr==1.29
+  - tidyverse==1.2.1
+  - numpy==1.19.1
+  
+- GNU make 4.2.1
+  
   
 # References
