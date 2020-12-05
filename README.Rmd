@@ -62,18 +62,14 @@ To replicate the analysis, clone this GitHub repository, install the [dependenci
 # download data
 python src/Download_file.py --source=https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv --destination=data/winequality-red.csv
 python src/Download_file.py --source=https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-white.csv --destination=data/winequality-white.csv
-
 # pre-process data 
 python src/Preprocessing.py --raw_white=data/winequality-white.csv --raw_red=data/winequality-red.csv --preprocessed_train=data/winequality-train.csv --preprocessed_test=data/winequality-test.csv
-
 # create exploratory data visualizations
 python src/EDA.py --preprocessed_train=data/winequality-train.csv --quality_count_path=results/quality_count.png --quality_all_variables_path=results/quality_all_variables.png
-
 # tune and test model
-python src/ML_analyses.py --preprocessed_train=data/winequality-train.csv --preprocessed_test=data/winequality-test.csv --knn_results_path=results/knn_results.csv --ridge_results_path=results/ridge_results.csv
-
+python src/ML_analyses.py --preprocessed_train=data/winequality-train.csv --preprocessed_test=data/winequality-test.csv --results_path=results
 # render final report
-TO DO
+Rscript -e "rmarkdown::render('doc/wine_quality_predict_report.Rmd')"
 ```
 
 ## Dependencies
