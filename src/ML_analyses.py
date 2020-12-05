@@ -46,6 +46,8 @@ def main(opt):
     ridge_results_path = os.path.join(results_path, "ridge_results.csv")
     test_set_result_path = os.path.join(results_path, "test_set_result.csv")
     model_comparison_path = os.path.join(results_path, "model_comparison.csv")
+    knn_prediction_chart_path = os.path.join(results_path, "knn_prediction.png")
+    ridge_prediction_chart_path = os.path.join(results_path, "ridge_prediction.png")
 
     preprocessed_train = pd.read_csv(preprocessed_train)
     preprocessed_test = pd.read_csv(preprocessed_test)
@@ -155,6 +157,8 @@ def main(opt):
         .properties(title="K-nn Predictions vs. True Qualities on Train Set")
     )
 
+    knn_prediction_chart.save(knn_prediction_chart_path)
+
     ridge_true_pred = pd.DataFrame(
         {"true_quality": y_train, "ridge_pred": y_pred_ridge}
     )
@@ -169,6 +173,8 @@ def main(opt):
         )
         .properties(title="Ridge Predictions vs. True Qualities on Train Set")
     )
+
+    ridge_prediction_chart.save(ridge_prediction_chart_path)
 
     # Model comparison
     model_comparison = pd.DataFrame(
