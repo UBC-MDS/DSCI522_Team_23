@@ -117,14 +117,22 @@ def main(opt):
     )
 
     quality_all_variables_left = (bar + error).repeat(
-        row=pych_variables[:6],
+        row=pych_variables[:4],
+    )
+
+    quality_all_variables_middle = (bar + error).repeat(
+        row=pych_variables[4:8],
     )
 
     quality_all_variables_right = (bar + error).repeat(
-        row=pych_variables[6:],
+        row=pych_variables[8:],
     )
 
-    quality_all_variables = quality_all_variables_left | quality_all_variables_right
+    quality_all_variables = (
+        quality_all_variables_left
+        | quality_all_variables_middle
+        | quality_all_variables_right
+    )
 
     quality_all_variables.save(quality_all_variables_path)
 

@@ -2,20 +2,19 @@
 # date: 2020-11-26
 
 """This script reads the train split csv file and produces exploratory data visualizations.
-Usage: ML_analyses.py --preprocessed_train=<preprocessed_train> --preprocessed_test=<preprocessed_test> --knn_results_path=<knn_results_path> --ridge_results_path=<ridge_results_path> --test_set_result_path=<test_set_result_path> 
+Usage: ML_analyses.py --preprocessed_train=<preprocessed_train> --preprocessed_test=<preprocessed_test> --results_path=<results_path>  
 
 Options:
 --preprocessed_train=<preprocessed_train>                               Takes the unquoted relative path of the proprecessed train split as a csv file (this is a required option)
 --preprocessed_test=<preprocessed_test>                                 Takes the unquoted relative path of the proprecessed test split as a csv file (this is a required option)
---knn_results_path=<knn_results_path>                                   Takes the unquoted relative path to store the knn results (this is a required option)
---ridge_results_path=<ridge_results_path>                               Takes the unquoted relative path to store the ridge results (this is a required option)
---test_set_result_path=<test_set_result_path>                           Takes the unquoted relative path to store the final result on test split (this is a required option)
+--results_path=<results_path>                                           Takes the unquoted relative path to the folder where analytical results should be stored (this is a required option)
 
 """
 
 import altair as alt
 from docopt import docopt
 import numpy as np
+import os
 import pandas as pd
 
 from sklearn.compose import ColumnTransformer
@@ -41,14 +40,17 @@ def main(opt):
     # Read-in train and test sets
     preprocessed_train = opt["--preprocessed_train"]
     preprocessed_test = opt["--preprocessed_test"]
-    knn_results_path = opt["--knn_results_path"]
-    ridge_results_path = opt["--ridge_results_path"]
-    test_set_result_path = opt["--test_set_result_path"]
+    results_path = opt["--results_path"]
+
+    knn_results_path = os.path.join(results_path, "knn_results.csv")
+    ridge_results_path = os.path.join(results_path, "ridge_results.csv")
+    test_set_result_path = os.path.join(results_path, "test_set_result.csv")
+    model_comparison_path = os.path.join(results_path, "model_comparison.csv")
 
     preprocessed_train = pd.read_csv(preprocessed_train)
     preprocessed_test = pd.read_csv(preprocessed_test)
-    preprocessed_train = pd.read_csv("../data/winequality-train.csv")
-    preprocessed_test = pd.read_csv("../data/winequality-test.csv")
+    # preprocessed_train = pd.read_csv("../data/winequality-train.csv")
+    # preprocessed_test = pd.read_csv("../data/winequality-test.csv")
 
     X_train = preprocessed_train.drop("quality", axis=1)
     y_train = preprocessed_train["quality"]
@@ -196,20 +198,21 @@ def main(opt):
     )
 
     # Save results
-    ridge_results.columns = ["params", "mean_RMSE", "rank_cv_score"]
+    ridge_results.columns = ["params", "mean_negative_RMSE", "rank_cv_score"]
     ridge_results["alpha"] = [
         dict["ridge__alpha"] for dict in list(ridge_results["params"])
     ]
     ridge_results = ridge_results.drop("params", axis=1)
     ridge_results.to_csv(ridge_results_path, index=False)
 
-    knn_results.columns = ["params", "mean_RMSE", "rank_cv_score"]
+    knn_results.columns = ["params", "mean_negative_RMSE", "rank_cv_score"]
     knn_results["n_neighbors"] = [
         dict["knn__n_neighbors"] for dict in list(knn_results["params"])
     ]
     knn_results = knn_results.drop("params", axis=1)
     knn_results.to_csv(knn_results_path, index=False)
 
+    model_comparison.to_csv(model_comparison_path, index=False)
     test_set_result.to_csv(test_set_result_path, index=False)
 
 
