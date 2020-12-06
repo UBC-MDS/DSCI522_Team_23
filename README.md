@@ -135,6 +135,8 @@ Dependencies
     -   knitr==1.29
     -   tidyverse==1.2.1
     -   numpy==1.19.1
+    -   dplyr==1.0.2
+    -   readr==1.4.0
   
 -   GNU make 4.2.1
   
