@@ -42,4 +42,4 @@ clean :
 	rm -rf results/quality_all_variables.png results/quality_count.png results/dummy_results.csv results/knn_prediction.png results/knn_results.csv results/ridge_prediction.png results/ridge_results.csv results/model_comparison.csv results/test_set_result.csv 
 	
 	# Report removing
-	rm -rf doc/wine_quality_predict_report.html doc/wine_quality_predict_report.Rmd
+	rm -rf doc/wine_quality_predict_report.html 
