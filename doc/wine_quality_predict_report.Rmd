@@ -12,20 +12,22 @@ bibliography: refs.bib
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, fig.align = "center")
 library(knitr)
+library(dplyr)
+library(readr)
 ```
 
 # Summary
 
 With the wine quality data, we are attempting to build a regression model to help us identify the best white and white variants of the Portuguese "Vinho Verde" wine. We plan to build a predictive regression model that can effectively predict the wine quality score given the physicochemical tests variable. 
 
-Our final regression model- k-nearest neighbors (k-NN) regressor performs fairly well on an unseen test data set, with an RMSE score of 0.7171. 
+Our final regression model- the k-nearest neighbors (k-NN) regressor performs fairly well on an unseen test data set, with an RMSE score of 0.7171. 
 
 A lower value of RMSE indicates a better fit and it is a good measure of how accurate our model predicts the response. From our result, our RMSE score for the test set is pretty similar to the RMSE score for the validation set. There is no overfitting nor underfitting problems in our model.
 
 We selected the k-NN regressor as our final model after making a comparison with the baseline model, dummy regressor and the ridge regressor based on the mean cross-validation RMSE score with hyperparameter tuning. We then used the best-tuned hyperparameter, k= 16 for k-NN regressor and alpha=10 for ridge regressor to obtain an overall RME score for our training set. We can see that it is obvious the k-NN regressor has a lower RMSE score compared to other models. 
 
 ```{r}
-kable(read.csv(file = '../results/model_comparison.csv'), caption = 'Table 2: RMSE Score for All Models Training Set')
+kable(read.csv(file = '../results/model_comparison.csv') %>% mutate_if(is.numeric, round, 3), caption = 'Table 1: RMSE Score for All Models Training Set')
 
 ```
 
@@ -58,7 +60,7 @@ instances in our combined dataset of red wine and white wine.
 
 ## Analysis
 
-The k-nearest neighbors (k-NN) algorithm and linear regression (Ridge) were used to build regression models to predict wine quality (found in the quality column of the data set). Not only that, but we also include a dummy regressor model for baseline comparison. The mean strategy was chosen to generate predictions. We used all variables in the original data set to fit the model and carried out cross-validation. After carrying out parameter tuning together with cross-validation, we chose 16 for hyperparameter k of k-NN algorithm and 10 for the alpha of Ridge. The R [@R] and Python [@Python] programming languages and the following R and Python packages were used to perform the analysis: tidyverse [@tidyverse], knitr [@knitr], docopt [@docopt], numpy [@harris2020array], Pandas [@mckinney2010data], altair [@2018-altair], scikit-learn [@scikit-learn]. The code used to perform the analysis and create this report can be found here: https://github.com/UBC-MDS/DSCI522_Team_23.
+The k-nearest neighbors (k-NN) algorithm and linear regression (Ridge) were used to build regression models to predict wine quality (found in the quality column of the data set). Not only that, but we also include a dummy regressor model for baseline comparison. The mean strategy was chosen to generate predictions. We used all variables in the original data set to fit the model and carried out cross-validation. After carrying out parameter tuning together with cross-validation, we chose 16 for hyperparameter k of k-NN algorithm and 10 for the alpha of Ridge. The R [@R] and Python [@Python] programming languages and the following R and Python packages were used to perform the analysis: tidyverse [@tidyverse], knitr [@knitr], docopt [@docopt], numpy [@harris2020array], Pandas [@mckinney2010data], altair [@2018-altair], scikit-learn [@scikit-learn], dplyr[@dplyr]. The code used to perform the analysis and create this report can be found here: https://github.com/UBC-MDS/DSCI522_Team_23.
 
 
 # Results & Discussion
@@ -72,7 +74,7 @@ knitr::include_graphics("../results/quality_all_variables.png")
 
 Also, we plotted the number of wines by quality class to observe the range of quality score in our data. From Figure 2, we can see that most of our wine grade centers around 5 to 7. 
 
-```{r, fig.cap= "Figure 2. Number of Wines by Quality Class", out.width='100%'}
+```{r, fig.cap= "Figure 2. Number of Wines by Quality Class", out.width='50%'}
 knitr::include_graphics("../results/quality_count.png")
 ```
 
@@ -81,33 +83,33 @@ We chose to use a simple regression model using the k-nearest neighbors' algorit
 
 
 ```{r}
-kable(read.csv(file = '../results/knn_results.csv'), caption = 'Table 3: Cross-validation RMSE Score for kNN')
+kable(read.csv(file = '../results/knn_results.csv'), caption = 'Table 2: Cross-validation RMSE Score for kNN')
 ```
 
 ```{r}
-kable(read.csv(file = '../results/ridge_results.csv'), caption = 'Table 4: Cross-validation RMSE Score for Ridge Regressor')
+kable(read.csv(file = '../results/ridge_results.csv'), caption = 'Table 3: Cross-validation RMSE Score for Ridge Regressor')
 ```
 
 By comparing the best validation RMSE score among our models, we can see that the baseline model, dummy regressor performs the worst, followed by ridge regression and kNN regressor. 
 
-```{r}
-kable(read.csv(file = '../results/dummy_results.csv'), caption = 'Table 5: Cross-validation RMSE Score for Dummy Regressor')
+```{r, message = FALSE}
+kable(read_csv(file = '../results/dummy_results.csv', col_names = c('Dummy Regressor', 'RMSE value'))[-1,], caption = 'Table 4: Cross-validation RMSE Score for Dummy Regressor')
 ```
 
 We also compare the actual vs prediction score values for our validation set on the kNN and Ridge models. From here, we can see that the predicted quality falls within the range of 4 to 8, which are reasonable values. One of our concerns when performing regression on our data was the predictions fall out of our quality score range, which is between 0-10. 
 
-```{r, fig.cap= "Figure 3. Ridge Predictions vs Actual", out.width='100%'}
+```{r, fig.cap= "Figure 3. Ridge Predictions vs Actual", out.width='50%'}
 knitr::include_graphics("../results/ridge_prediction.png")
 ```
 
-```{r, fig.cap= "Figure 4. KNN Predictions vs Actual", out.width='100%'}
+```{r, fig.cap= "Figure 4. KNN Predictions vs Actual", out.width='50%'}
 knitr::include_graphics("../results/knn_prediction.png")
 ```
 
 We then used our selected model with k=16 to perform predictions on our test set. 
 
 ```{r}
-kable(read.csv(file = '../results/test_set_result.csv'), caption = 'Table 1: RMSE Score for Test Sset')
+kable(read.csv(file = '../results/test_set_result.csv'), caption = 'Table 5: RMSE Score for Test Sset')
 ```
 
 
