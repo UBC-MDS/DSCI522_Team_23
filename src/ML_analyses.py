@@ -22,7 +22,7 @@ from sklearn.dummy import DummyRegressor
 from sklearn.impute import SimpleImputer
 from sklearn.linear_model import Ridge
 from sklearn.metrics import mean_squared_error
-from sklearn.model_selection import GridSearchCV
+from sklearn.model_selection import GridSearchCV, cross_validate
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.preprocessing import StandardScaler
@@ -41,7 +41,9 @@ def main(opt):
     preprocessed_train = opt["--preprocessed_train"]
     preprocessed_test = opt["--preprocessed_test"]
     results_path = opt["--results_path"]
+    # results_path = "../results"
 
+    dummy_results_path = os.path.join(results_path, "dummy_results.csv")
     knn_results_path = os.path.join(results_path, "knn_results.csv")
     ridge_results_path = os.path.join(results_path, "ridge_results.csv")
     test_set_result_path = os.path.join(results_path, "test_set_result.csv")
@@ -92,6 +94,17 @@ def main(opt):
     dummy_pipe = Pipeline(
         [("preprocessor", preprocessor), ("dummy", DummyRegressor(strategy="mean"))]
     )
+    dummy_cv_scores = cross_validate(
+        dummy_pipe,
+        X_train,
+        y_train,
+        scoring="neg_root_mean_squared_error",
+        return_train_score=True,
+    )
+    dummy_results = pd.DataFrame(dummy_cv_scores).mean(axis=0)[
+        ["train_score", "test_score"]
+    ]
+
     dummy_pipe.fit(X_train, y_train)
     y_pred_dummy = dummy_pipe.predict(X_train)
 
@@ -106,13 +119,16 @@ def main(opt):
     ridge_param_grid = {"ridge__alpha": [0.001, 0.01, 0.1, 1, 10, 100, 1000]}
 
     ridge_reg = GridSearchCV(
-        ridge_pipe, ridge_param_grid, scoring="neg_root_mean_squared_error"
+        ridge_pipe,
+        ridge_param_grid,
+        scoring="neg_root_mean_squared_error",
+        return_train_score=True,
     )
     ridge_reg.fit(X_train, y_train)
     pd.DataFrame(ridge_reg.cv_results_).sort_values("rank_test_score")
 
     ridge_results = pd.DataFrame(ridge_reg.cv_results_).sort_values("rank_test_score")[
-        ["params", "mean_test_score", "rank_test_score"]
+        ["params", "mean_train_score", "mean_test_score", "rank_test_score"]
     ]
 
     ## Get training RMSE
@@ -129,13 +145,16 @@ def main(opt):
     knn_param_grid = {"knn__n_neighbors": [5 * x + 1 for x in range(10)]}
 
     knn_reg = GridSearchCV(
-        knn_pipe, knn_param_grid, scoring="neg_root_mean_squared_error"
+        knn_pipe,
+        knn_param_grid,
+        scoring="neg_root_mean_squared_error",
+        return_train_score=True,
     )
     knn_reg.fit(X_train, y_train)
     pd.DataFrame(knn_reg.cv_results_).sort_values("rank_test_score")
 
     knn_results = pd.DataFrame(knn_reg.cv_results_).sort_values("rank_test_score")[
-        ["params", "mean_test_score", "rank_test_score"]
+        ["params", "mean_train_score", "mean_test_score", "rank_test_score"]
     ]
 
     ## Get training RMSE
@@ -204,14 +223,30 @@ def main(opt):
     )
 
     # Save results
-    ridge_results.columns = ["params", "mean_negative_RMSE", "rank_cv_score"]
+    dummy_results.index = [
+        "mean_train_negative_RMSE",
+        "mean_validation_negative_RMSE",
+    ]
+    dummy_results.to_csv(dummy_results_path)
+
+    ridge_results.columns = [
+        "params",
+        "mean_train_negative_RMSE",
+        "mean_validation_negative_RMSE",
+        "rank_cv_score",
+    ]
     ridge_results["alpha"] = [
         dict["ridge__alpha"] for dict in list(ridge_results["params"])
     ]
     ridge_results = ridge_results.drop("params", axis=1)
     ridge_results.to_csv(ridge_results_path, index=False)
 
-    knn_results.columns = ["params", "mean_negative_RMSE", "rank_cv_score"]
+    knn_results.columns = [
+        "params",
+        "mean_train_negative_RMSE",
+        "mean_validation_negative_RMSE",
+        "rank_cv_score",
+    ]
     knn_results["n_neighbors"] = [
         dict["knn__n_neighbors"] for dict in list(knn_results["params"])
     ]
