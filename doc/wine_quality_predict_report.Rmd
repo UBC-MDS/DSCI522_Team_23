@@ -79,7 +79,7 @@ knitr::include_graphics("../results/quality_count.png")
 ```
 
 
-We chose to use a simple regression model using the k-nearest neighbors' algorithm together with ridge regressor and dummy regressor for predictions. To find the model that best predicted the wine quality score, we performed the default 5-fold cross-validation to find the best k and best alpha for our prediction model. From table 3 and 4, we observed the best optimal k was 16, with a validation RMSE of 0.698 and the best alpha value is 10, with a validation RMSE of 0.731. 
+We chose to use a simple regression model using the k-nearest neighbors' algorithm, ridge regressor and dummy regressor for predictions. To find the model that best predicted the wine quality score, we performed the default 5-fold cross-validation to find the best k and best alpha for our prediction model. From table 3 and 4, we observed the best optimal k was 16, with a validation RMSE of 0.698 and the best alpha value is 10, with a validation RMSE of 0.731. 
 
 
 ```{r}
@@ -90,13 +90,13 @@ kable(read.csv(file = '../results/knn_results.csv'), caption = 'Table 2: Cross-v
 kable(read.csv(file = '../results/ridge_results.csv'), caption = 'Table 3: Cross-validation RMSE Score for Ridge Regressor')
 ```
 
-By comparing the best validation RMSE score among our models, we can see that the baseline model, dummy regressor performs the worst, followed by ridge regression and kNN regressor. 
+By comparing the best validation RMSE scores among our models, we can see that the baseline model, dummy regressor performs the worst, followed by ridge regression and kNN regressor. 
 
 ```{r, message = FALSE}
 kable(read_csv(file = '../results/dummy_results.csv', col_names = c('Dummy Regressor', 'RMSE value'))[-1,], caption = 'Table 4: Cross-validation RMSE Score for Dummy Regressor')
 ```
 
-We also compare the actual vs prediction score values for our validation set on the kNN and Ridge models. From here, we can see that the predicted quality falls within the range of 4 to 8, which are reasonable values. One of our concerns when performing regression on our data was the predictions fall out of our quality score range, which is between 0-10. 
+We also compare the actual vs prediction score values for our validation set on the kNN and Ridge models. From here, we can see that the predicted quality falls within the range of 4 to 8, which are reasonable values. One of our concerns when performing regression on our data was the predictions fell out of our quality score range, which is between 0-10.  
 
 ```{r, fig.cap= "Figure 3. Ridge Predictions vs Actual", out.width='50%'}
 knitr::include_graphics("../results/ridge_prediction.png")
@@ -113,7 +113,7 @@ kable(read.csv(file = '../results/test_set_result.csv'), caption = 'Table 5: RMS
 ```
 
 
-Our prediction model performed quite well on test data, with an RMSE score of 0.7171 for the test set, which is pretty similar to our validation score of the KNN regressor. 
+Our prediction model performed quite well on test data, with an RMSE score of 0.7171 , which is pretty similar to our validation score of the KNN regressor. 
 
 There are a few suggestions to improve our model. First, we could try more power regression models such as Random Forests Algorithm. Also, given a relatively small number of features in the dataset, we could use forward selection to reduce the number of features. We could also engineer new features. One possible feature is the percentage of molecular sulphur dioxide which is the active form that acts as germicide and antioxidant in winemaking and is potentially associated with wine quality. The percentage of molecular sulphur dioxide can be calculated with the concentration of free SO2 and the pH [@sudraud1985anti].
 
