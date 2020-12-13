@@ -31,7 +31,7 @@ results/dummy_results.csv results/knn_prediction.png results/knn_results.csv res
 
 ## Report
 doc/wine_quality_predict_report.html : doc/wine_quality_predict_report.Rmd results/quality_count.png results/dummy_results.csv results/knn_prediction.png results/quality_all_variables.png results/knn_results.csv results/ridge_prediction.png results/ridge_results.csv results/model_comparison.csv results/test_set_result.csv
-	Rscript -e "rmarkdown::render('doc/wine_quality_predict_report.html')"
+	Rscript -e "rmarkdown::render('doc/wine_quality_predict_report.Rmd')"
 
 ## Clean 
 clean :

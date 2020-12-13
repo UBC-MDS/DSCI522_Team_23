@@ -77,7 +77,7 @@ def main(opt):
     categorical_preprocessor = Pipeline(
         [
             ("inputer", SimpleImputer(strategy="constant", fill_value="missing")),
-            ("ohe", OneHotEncoder(drop="if_binary")),
+            ("ohe", OneHotEncoder(drop="first")),
         ]
     )
 
@@ -98,12 +98,15 @@ def main(opt):
         dummy_pipe,
         X_train,
         y_train,
-        scoring="neg_root_mean_squared_error",
+        scoring="neg_mean_squared_error",
         return_train_score=True,
+        cv=5,
     )
     dummy_results = pd.DataFrame(dummy_cv_scores).mean(axis=0)[
         ["train_score", "test_score"]
     ]
+    dummy_results["train_score"] = np.sqrt(-dummy_results["train_score"])
+    dummy_results["test_score"] = np.sqrt(-dummy_results["test_score"])
 
     dummy_pipe.fit(X_train, y_train)
     y_pred_dummy = dummy_pipe.predict(X_train)
@@ -111,7 +114,7 @@ def main(opt):
     ### Check train set RMSE
 
     print(
-        f"Dummy RMSE on the train split is {mean_squared_error(y_train, y_pred_dummy, squared=False):.3f}"
+        f"Dummy RMSE on the train split is {np.sqrt(mean_squared_error(y_train, y_pred_dummy)):.3f}"
     )
 
     ## Ridge regression
@@ -121,8 +124,9 @@ def main(opt):
     ridge_reg = GridSearchCV(
         ridge_pipe,
         ridge_param_grid,
-        scoring="neg_root_mean_squared_error",
+        scoring="neg_mean_squared_error",
         return_train_score=True,
+        cv=5,
     )
     ridge_reg.fit(X_train, y_train)
     pd.DataFrame(ridge_reg.cv_results_).sort_values("rank_test_score")
@@ -131,11 +135,14 @@ def main(opt):
         ["params", "mean_train_score", "mean_test_score", "rank_test_score"]
     ]
 
+    ridge_results["mean_train_score"] = np.sqrt(-ridge_results["mean_train_score"])
+    ridge_results["mean_test_score"] = np.sqrt(-ridge_results["mean_test_score"])
+
     ## Get training RMSE
     y_pred_ridge = ridge_reg.predict(X_train)
 
     print(
-        f"Ridge RMSE on the train split is {mean_squared_error(y_train, y_pred_ridge, squared=False):.3f}"
+        f"Ridge RMSE on the train split is {np.sqrt(mean_squared_error(y_train, y_pred_ridge)):.3f}"
     )
 
     ## knn model
@@ -147,8 +154,9 @@ def main(opt):
     knn_reg = GridSearchCV(
         knn_pipe,
         knn_param_grid,
-        scoring="neg_root_mean_squared_error",
+        scoring="neg_mean_squared_error",
         return_train_score=True,
+        cv=5,
     )
     knn_reg.fit(X_train, y_train)
     pd.DataFrame(knn_reg.cv_results_).sort_values("rank_test_score")
@@ -157,11 +165,14 @@ def main(opt):
         ["params", "mean_train_score", "mean_test_score", "rank_test_score"]
     ]
 
+    knn_results["mean_train_score"] = np.sqrt(-knn_results["mean_train_score"])
+    knn_results["mean_test_score"] = np.sqrt(-knn_results["mean_test_score"])
+
     ## Get training RMSE
     y_pred_knn = knn_reg.predict(X_train)
 
     print(
-        f"K-nn RMSE on the train split is {mean_squared_error(y_train, y_pred_knn, squared=False):.3f}"
+        f"K-nn RMSE on the train split is {np.sqrt(mean_squared_error(y_train, y_pred_knn)):.3f}"
     )
 
     # Visualizations
@@ -200,9 +211,9 @@ def main(opt):
         {
             "Model": ["dummy_regressor", "Ridge_regressor", "K-nn_Regressor"],
             "RMSE on train set": [
-                mean_squared_error(y_train, y_pred_dummy, squared=False),
-                mean_squared_error(y_train, y_pred_ridge, squared=False),
-                mean_squared_error(y_train, y_pred_knn, squared=False),
+                np.sqrt(mean_squared_error(y_train, y_pred_dummy)),
+                np.sqrt(mean_squared_error(y_train, y_pred_ridge)),
+                np.sqrt(mean_squared_error(y_train, y_pred_knn)),
             ],
         }
     )
@@ -210,15 +221,13 @@ def main(opt):
     # We should choose K-nn model
     y_pred_knn_test = knn_reg.predict(X_test)
     print(
-        f"K-nn RMSE on the test split is {mean_squared_error(y_test, y_pred_knn_test, squared=False):.3f}"
+        f"K-nn RMSE on the test split is {np.sqrt(mean_squared_error(y_test, y_pred_knn_test)):.3f}"
     )
 
     test_set_result = pd.DataFrame(
         {
             "Model": ["k-NN"],
-            "test_split_RMSE": [
-                mean_squared_error(y_test, y_pred_knn_test, squared=False)
-            ],
+            "test_split_RMSE": [np.sqrt(mean_squared_error(y_test, y_pred_knn_test))],
         }
     )
 
@@ -227,7 +236,7 @@ def main(opt):
         "mean_train_negative_RMSE",
         "mean_validation_negative_RMSE",
     ]
-    dummy_results.to_csv(dummy_results_path)
+    dummy_results.to_csv(dummy_results_path, header=False)
 
     ridge_results.columns = [
         "params",

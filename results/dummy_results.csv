@@ -1,3 +1,2 @@
-,0
-mean_train_negative_RMSE,-0.8681328336798769
-mean_validation_negative_RMSE,-0.8682199612094899
+mean_train_negative_RMSE,0.8759167284704361
+mean_validation_negative_RMSE,0.8759676902642379

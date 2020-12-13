@@ -10,12 +10,12 @@ Options:
 --quality_all_variables_path=<quality_all_variables_path>               Takes the unquoted relative path to place the output png file depicting the relationship between wine quality and 11 physicochemical variables
 """
 
+from altair_saver import save
 import altair as alt
 from docopt import docopt
 import numpy as np
 import pandas as pd
 import sys
-
 
 opt = docopt(__doc__)
 
