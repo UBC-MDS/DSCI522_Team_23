@@ -71,8 +71,7 @@ be a problem when fitting the model and the result may not be accurate.
 The k-nearest neighbors (k-nn) algorithm will be used to build a
 classification model to predict the quality score of the wine, including
 white and red wine. All variables included in the original dataset will
-be used in fitting our model. Since there are no missing values in our
-dataset, there is no need for any imputation. Also, the support vector
+be used in fitting our model. Also, the support vector
 machines (SVMs) with RBF kernel will be our second model in predicting
 the quality score of wine. We are hoping to see improvement in our
 model, given the support vectors. Most of our analysis will be done

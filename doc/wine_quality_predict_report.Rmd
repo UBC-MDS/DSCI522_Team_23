@@ -19,7 +19,7 @@ library(readr)
 
 # Summary
 
-With the wine quality data, we are attempting to build a regression model to help us identify the best white and white variants of the Portuguese "Vinho Verde" wine. We plan to build a predictive regression model that can effectively predict the wine quality score given the physicochemical tests variable. 
+With the wine quality data, we are attempting to build a regression model to help us identify the best red and white variants of the Portuguese "Vinho Verde" wine. We plan to build a predictive regression model that can effectively predict the wine quality score given the physicochemical tests variable. 
 
 Our final regression model- the k-nearest neighbors (k-NN) regressor performs fairly well on an unseen test data set, with an RMSE score of 0.7171. 
 
@@ -116,7 +116,7 @@ kable(read.csv(file = '../results/test_set_result.csv'), caption = 'Table 5: RMS
 
 Our prediction model performed quite well on test data, with an RMSE score of 0.7171 , which is pretty similar to our validation score of the KNN regressor. 
 
-There are a few suggestions to improve our model. First, we could try more power regression models such as Random Forests Algorithm. Also, given a relatively small number of features in the dataset, we could use forward selection to reduce the number of features. We could also engineer new features. One possible feature is the percentage of molecular sulphur dioxide which is the active form that acts as germicide and antioxidant in winemaking and is potentially associated with wine quality. The percentage of molecular sulphur dioxide can be calculated with the concentration of free SO2 and the pH [@sudraud1985anti].
+There are a few suggestions to improve our model. First, we could try more power regression models such as Random Forests Algorithm and model incluing SVM. Also, given a relatively small number of features in the dataset, we could use forward selection to reduce the number of features. We could also engineer new features. One possible feature is the percentage of molecular sulphur dioxide which is the active form that acts as germicide and antioxidant in winemaking and is potentially associated with wine quality. The percentage of molecular sulphur dioxide can be calculated with the concentration of free SO2 and the pH [@sudraud1985anti].
 
 
 # References
