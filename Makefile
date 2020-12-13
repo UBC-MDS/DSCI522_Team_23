@@ -31,7 +31,7 @@ results/dummy_results.csv results/knn_prediction.png results/knn_results.csv res
 	python src/ML_analyses.py --preprocessed_train=data/winequality-train.csv --preprocessed_test=data/winequality-test.csv --results_path=results
 
 ## Report
-doc/breast_cancer_predict_report.md: doc/wine_quality_predict_report.Rmd doc/refs.bib results/quality_count.png results/dummy_results.csv results/knn_prediction.png results/quality_all_variables.png results/knn_results.csv results/ridge_prediction.png results/ridge_results.csv results/model_comparison.csv results/test_set_result.csv
+doc/breast_cancer_predict_report.md doc/wine_quality_predict_report.html: doc/wine_quality_predict_report.Rmd doc/refs.bib results/quality_count.png results/dummy_results.csv results/knn_prediction.png results/quality_all_variables.png results/knn_results.csv results/ridge_prediction.png results/ridge_results.csv results/model_comparison.csv results/test_set_result.csv
 	Rscript -e "rmarkdown::render('doc/wine_quality_predict_report.Rmd')"
 
 ## Clean
