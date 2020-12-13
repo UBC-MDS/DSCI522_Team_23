@@ -3,6 +3,8 @@ title: "Prediction of Wine Quality based on Physicochemical Tests"
 author: "JiaJie (JOSHUA) Lim, Ling (ELINA) Lin"
 date: "2020/11/26 (updated: `r Sys.Date()`)"
 output: 
+    md_document:
+        toc: true
     html_document:
         toc: true
 bibliography: refs.bib
