@@ -3,7 +3,7 @@ README
 
 # Prediction of Wine Quality based on Physicochemical Tests
 
--   author: Jiajie (Joshua) Lim, Ling (Elina) Lin, Jiacheng Wang, Kangyu
+-   author: JiaJie (Joshua) Lim, Ling (Elina) Lin, Jiacheng Wang, Kangyu
     (Mark) Wang
 
 This project aims to build machine learning models that predict a given
