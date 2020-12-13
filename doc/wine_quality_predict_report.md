@@ -33,29 +33,11 @@ for k-NN regressor and alpha=10 for ridge regressor to obtain an overall
 RME score for our training set. We can see that it is obvious the k-NN
 regressor has a lower RMSE score compared to other models.
 
-<table>
-<caption>Table 1: RMSE Score for All Models Training Set</caption>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Model</th>
-<th style="text-align: right;">RMSE.on.train.set</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">dummy_regressor</td>
-<td style="text-align: right;">0.868</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Ridge_regressor</td>
-<td style="text-align: right;">0.728</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">K-nn_Regressor</td>
-<td style="text-align: right;">0.650</td>
-</tr>
-</tbody>
-</table>
+| Model            |  RMSE.on.train.set|
+|:-----------------|------------------:|
+| dummy\_regressor |              0.868|
+| Ridge\_regressor |              0.728|
+| K-nn\_Regressor  |              0.650|
 
 The model we obtained may not be the best model to be used in the
 industry to predict the wine quality score since there are still spaces
@@ -162,165 +144,37 @@ our prediction model. From table 3 and 4, we observed the best optimal k
 was 16, with a validation RMSE of 0.698 and the best alpha value is 10,
 with a validation RMSE of 0.731.
 
-<table style="width:100%;">
-<caption>Table 2: Cross-validation RMSE Score for kNN</caption>
-<colgroup>
-<col style="width: 30%" />
-<col style="width: 37%" />
-<col style="width: 17%" />
-<col style="width: 14%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: right;">mean_train_negative_RMSE</th>
-<th style="text-align: right;">mean_validation_negative_RMSE</th>
-<th style="text-align: right;">rank_cv_score</th>
-<th style="text-align: right;">n_neighbors</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">-0.6551716</td>
-<td style="text-align: right;">-0.6984427</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">16</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">-0.6352172</td>
-<td style="text-align: right;">-0.6995469</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">11</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">-0.5840706</td>
-<td style="text-align: right;">-0.7000658</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">6</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">-0.6671866</td>
-<td style="text-align: right;">-0.7020857</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">21</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">-0.6737504</td>
-<td style="text-align: right;">-0.7024079</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">26</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">-0.6792406</td>
-<td style="text-align: right;">-0.7033041</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">31</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">-0.6834496</td>
-<td style="text-align: right;">-0.7035746</td>
-<td style="text-align: right;">7</td>
-<td style="text-align: right;">36</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">-0.6857130</td>
-<td style="text-align: right;">-0.7035957</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">41</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">-0.6882499</td>
-<td style="text-align: right;">-0.7041832</td>
-<td style="text-align: right;">9</td>
-<td style="text-align: right;">46</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">0.0000000</td>
-<td style="text-align: right;">-0.7907265</td>
-<td style="text-align: right;">10</td>
-<td style="text-align: right;">1</td>
-</tr>
-</tbody>
-</table>
+|  mean\_train\_negative\_RMSE|  mean\_validation\_negative\_RMSE|  rank\_cv\_score|  n\_neighbors|
+|----------------------------:|---------------------------------:|----------------:|-------------:|
+|                   -0.6551716|                        -0.6984427|                1|            16|
+|                   -0.6352172|                        -0.6995469|                2|            11|
+|                   -0.5840706|                        -0.7000658|                3|             6|
+|                   -0.6671866|                        -0.7020857|                4|            21|
+|                   -0.6737504|                        -0.7024079|                5|            26|
+|                   -0.6792406|                        -0.7033041|                6|            31|
+|                   -0.6834496|                        -0.7035746|                7|            36|
+|                   -0.6857130|                        -0.7035957|                8|            41|
+|                   -0.6882499|                        -0.7041832|                9|            46|
+|                    0.0000000|                        -0.7907265|               10|             1|
 
-<table>
-<caption>Table 3: Cross-validation RMSE Score for Ridge Regressor</caption>
-<thead>
-<tr class="header">
-<th style="text-align: right;">mean_train_negative_RMSE</th>
-<th style="text-align: right;">mean_validation_negative_RMSE</th>
-<th style="text-align: right;">rank_cv_score</th>
-<th style="text-align: right;">alpha</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">-0.7281132</td>
-<td style="text-align: right;">-0.7306637</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1e+01</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">-0.7280708</td>
-<td style="text-align: right;">-0.7307792</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">1e+00</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">-0.7280702</td>
-<td style="text-align: right;">-0.7307984</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">1e-01</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">-0.7280702</td>
-<td style="text-align: right;">-0.7308004</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">1e-02</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">-0.7280702</td>
-<td style="text-align: right;">-0.7308006</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">1e-03</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">-0.7291403</td>
-<td style="text-align: right;">-0.7312388</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">1e+02</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">-0.7381478</td>
-<td style="text-align: right;">-0.7396998</td>
-<td style="text-align: right;">7</td>
-<td style="text-align: right;">1e+03</td>
-</tr>
-</tbody>
-</table>
+|  mean\_train\_negative\_RMSE|  mean\_validation\_negative\_RMSE|  rank\_cv\_score|  alpha|
+|----------------------------:|---------------------------------:|----------------:|------:|
+|                   -0.7281132|                        -0.7306637|                1|  1e+01|
+|                   -0.7280708|                        -0.7307792|                2|  1e+00|
+|                   -0.7280702|                        -0.7307984|                3|  1e-01|
+|                   -0.7280702|                        -0.7308004|                4|  1e-02|
+|                   -0.7280702|                        -0.7308006|                5|  1e-03|
+|                   -0.7291403|                        -0.7312388|                6|  1e+02|
+|                   -0.7381478|                        -0.7396998|                7|  1e+03|
 
 By comparing the best validation RMSE scores among our models, we can
 see that the baseline model, dummy regressor performs the worst,
 followed by ridge regression and kNN regressor.
 
-<table>
-<caption>Table 4: Cross-validation RMSE Score for Dummy Regressor</caption>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Dummy Regressor</th>
-<th style="text-align: right;">RMSE value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">mean_train_negative_RMSE</td>
-<td style="text-align: right;">-0.8681328</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">mean_validation_negative_RMSE</td>
-<td style="text-align: right;">-0.8682200</td>
-</tr>
-</tbody>
-</table>
+| Dummy Regressor                  |  RMSE value|
+|:---------------------------------|-----------:|
+| mean\_train\_negative\_RMSE      |  -0.8681328|
+| mean\_validation\_negative\_RMSE |  -0.8682200|
 
 We also compare the actual vs prediction score values for our validation
 set on the kNN and Ridge models. From here, we can see that the
@@ -342,21 +196,9 @@ Figure 4. KNN Predictions vs Actual
 We then used our selected model with k=16 to perform predictions on our
 test set.
 
-<table>
-<caption>Table 5: RMSE Score for Test Sset</caption>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Model</th>
-<th style="text-align: right;">test_split_RMSE</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">k-NN</td>
-<td style="text-align: right;">0.7170968</td>
-</tr>
-</tbody>
-</table>
+| Model |  test\_split\_RMSE|
+|:------|------------------:|
+| k-NN  |          0.7170968|
 
 Our prediction model performed quite well on test data, with an RMSE
 score of 0.7171 , which is pretty similar to our validation score of the
