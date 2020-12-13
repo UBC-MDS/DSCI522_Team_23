@@ -1,6 +1,6 @@
 ---
 title: "README"
-output: html_document
+output: github_document
 bibliography: doc/refs.bib
 ---
 
@@ -15,23 +15,23 @@ This project aims to build machine learning models that predict a given wine's q
 
 ## Data
 
-The data sets used in this project are of the prediction of wine quality based on physicochemical tests, related to red and white vinho verde wine samples, from the north of Portugal. The data were created by Paulo Cortez et al at the University of Minho, Guimarães, Portugal [-@cortez2009modeling]. It was sourced from the UCI Machine Learning Repository [@Dua2019] and can be found [here](https://archive.ics.uci.edu/ml/datasets/Wine+Quality), specifically this [file](https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/). The data provided only have physicochemical (inputs) and sensory (the output) variables available (e.g. there is no data about grape types, wine brand, wine selling price, etc.). There are a total of 4898 instances in our combined dataset of red wine and white wine.
+The data sets used in this project are of the prediction of wine quality based on physicochemical tests, related to red and white vinho verde wine samples, from the north of Portugal. The data were created by Paulo Cortez et al at the University of Minho, Guimarães, Portugal [@cortez2009modeling]. It was sourced from the UCI Machine Learning Repository [@Dua2019] and can be found [here](https://archive.ics.uci.edu/ml/datasets/Wine+Quality), specifically this [file](https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/). The data provided only have physicochemical (inputs) and sensory (the output) variables available (e.g. there is no data about grape types, wine brand, wine selling price, etc.). There are a total of 4898 instances in our combined dataset of red wine and white wine.
 
 ## Research Question
 
 From the data set provided, we are interested in predicting the wine quality (white wine and red wine) based on the physicochemical tests. We are engaged in predicting the quality score (score between 0 and 10) of a wine based on variables including:
 
-- fixed acidity
-- volatile acidity
-- citric acid
-- residual sugar
-- chlorides
-- free sulfur dioxide
-- total sulfur dioxide
-- density
-- pH
-- sulphates
-- alcohol
+- fixed acidity: most acids involved with wine or fixed or nonvolatile (do not evaporate readily).
+- volatile acidity: the amount of acetic acid in wine, which at too high of levels can lead to an unpleasant, vinegar taste.
+- citric acid: found in small quantities, citric acid can add 'freshness' and flavor to wines.
+- residual sugar: the amount of sugar remaining after fermentation stops, it's rare to find wines with less than 1 gram/liter and wines with greater than 45 grams/liter are considered sweet.
+- chlorides: the amount of salt in the wine.
+- free sulfur dioxide: the free form of SO2 exists in equilibrium between molecular SO2 (as a dissolved gas) and bisulfite ion; it prevents microbial growth and the oxidation of wine.
+- total sulfur dioxide: amount of free and bound forms of S02; in low concentrations, SO2 is mostly undetectable in wine, but at free SO2 concentrations over 50 ppm, SO2 becomes evident in the nose and taste of wine.
+- density: the density of wine is close to that of water depending on the percent alcohol and sugar content.
+- pH: describes how acidic or basic a wine is on a scale from 0 (very acidic) to 14 (very basic); most wines are between 3-4 on the pH scale.
+- sulphates: a wine additive which can contribute to sulfur dioxide gas (S02) levels, wich acts as an antimicrobial and antioxidant.
+- alcohol: the percent alcohol content of the wine.
 
 Moreover, we will also attempt to look for the correlation between the explanatory variables, to see if there are any multicollinearity occurs. Assuming all variables are independent, if the variables are correlated and the degree of correlation between variables is high enough, it can be a problem when fitting the model and the result may not be accurate. 
 
