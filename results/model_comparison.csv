@@ -1,4 +1,4 @@
 Model,RMSE on train set
-dummy_regressor,0.8681586870871519
-Ridge_regressor,0.7283789241300375
-K-nn_Regressor,0.6501419164282654
+dummy_regressor,0.8759217239005768
+Ridge_regressor,0.735351218651957
+K-nn_Regressor,0.6287209519449648

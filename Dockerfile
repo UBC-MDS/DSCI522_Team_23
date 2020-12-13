@@ -1,28 +1,36 @@
-############################################################
-# Dockerfile to build wine_quality_prediction images
-# Based on Ubuntu
-############################################################
+# Docker file for the project: Prediction of Wine Quality based on Physicochemical Tests
+# Mark Wang, Dec, 2020
 
-#Set base image to Ubuntu
-FROM selenium/standalone-chrome
+# use rocker/tidyverse as the base image and
+FROM rocker/tidyverse
 
-#Update repositor source list
-RUN sudo apt-get update
+# install the anaconda distribution of python
+RUN wget --quiet https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh -O ~/anaconda.sh && \
+    /bin/bash ~/anaconda.sh -b -p /opt/conda && \
+    rm ~/anaconda.sh && \
+    ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
+    echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
+    echo "conda activate base" >> ~/.bashrc && \
+    find /opt/conda/ -follow -type f -name '*.a' -delete && \
+    find /opt/conda/ -follow -type f -name '*.js.map' -delete && \
+    /opt/conda/bin/conda clean -afy && \
+    /opt/conda/bin/conda update -n base -c defaults conda
 
-################## BEGIN INSTALLATION ######################
-#Install python basics
-RUN sudo apt-get -y install \
-    build-essential \
-    python-dev \
-    python-setuptools
+# put anaconda python in path
+ENV PATH="/opt/conda/bin:${PATH}"
 
-# Create Timezon Variable
-ENV DEBIAN_FRONTEND=noninteractive
+# install docopt python package
+RUN conda update conda
 
-# Install tzdata
-RUN sudo apt-get install -y tzdata
+RUN conda install -y -c anaconda \ 
+    docopt \
+    requests
 
-# Install python pip
-RUN sudo apt-get -y install python3-pip
+RUN conda install -y -c conda-forge feather-format
 
-RUN sudo apt-get -y install git-all
+# install altair-related packages
+RUN conda install altair
+
+RUN conda install -c conda-forge altair_saver
+
+# Adapted from https://github.com/ttimbers/breast_cancer_predictor/blob/master/Dockerfile by Tiffany Timbers
