@@ -109,6 +109,11 @@ analysis and see whether there exists any overfitting or underfitting in
 our model. Also, we would return the confusion matrix of model
 performance on the test data to check for misclassification errors.
 
+## Report
+
+The final report can be found [here](https://raw.githubusercontent.com/UBC-MDS/DSCI522_Team_23/main/doc/wine_quality_predict_report.html)
+
+
 Usage
 -----
 
