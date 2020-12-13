@@ -1,4 +1,4 @@
-# Docker file for the project: Prediction of Wine Quality based on Physicochemical Tests 
+# Docker file for the project: Prediction of Wine Quality based on Physicochemical Tests  
 # Mark Wang, Dec, 2020
 
 # use rocker/tidyverse as the base image and
