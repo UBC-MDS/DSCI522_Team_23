@@ -1,3 +1,8 @@
+Prediction of Wine Quality based on Physicochemical Tests
+================
+JiaJie (JOSHUA) Lim, Ling (ELINA) Lin
+2020/11/26 (updated: 2020-12-12)
+
 -   [Summary](#summary)
 -   [Introduction](#introduction)
 -   [Methods](#methods)
@@ -6,8 +11,7 @@
 -   [Results & Discussion](#results-discussion)
 -   [References](#references)
 
-Summary
-=======
+# Summary
 
 With the wine quality data, we are attempting to build a regression
 model to help us identify the best white and white variants of the
@@ -33,19 +37,20 @@ for k-NN regressor and alpha=10 for ridge regressor to obtain an overall
 RME score for our training set. We can see that it is obvious the k-NN
 regressor has a lower RMSE score compared to other models.
 
-| Model            |  RMSE.on.train.set|
+| Model            | RMSE.on.train.set |
 |:-----------------|------------------:|
-| dummy\_regressor |              0.868|
-| Ridge\_regressor |              0.728|
-| K-nn\_Regressor  |              0.650|
+| dummy\_regressor |             0.872 |
+| Ridge\_regressor |             0.726 |
+| K-nn\_Regressor  |             0.652 |
+
+Table 1: RMSE Score for All Models Training Set
 
 The model we obtained may not be the best model to be used in the
 industry to predict the wine quality score since there are still spaces
 for improvement to reduce the RMSE score. Thus we recommend continuing
 study to improve this prediction model before we use this in production.
 
-Introduction
-============
+# Introduction
 
 As wine tasting is gaining increasing popularity, more efficient and
 lower-cost wine quality assessments are of urgent interest for the wine
@@ -66,11 +71,9 @@ algorithm can successfully predict and quantify complex human sensory
 evaluation scores, such assessment could lead to more cost-efficient and
 accurate certification for wine quality assurance.
 
-Methods
-=======
+# Methods
 
-Data
-----
+## Data
 
 The data sets used in this project are of the prediction of wine quality
 based on physicochemical tests, related to red and white vinho verde
@@ -86,8 +89,7 @@ output) variables available (e.g. there is no data about grape types,
 wine brand, wine selling price, etc.). There are a total of 4898
 instances in our combined dataset of red wine and white wine.
 
-Analysis
---------
+## Analysis
 
 The k-nearest neighbors (k-NN) algorithm and linear regression (Ridge)
 were used to build regression models to predict wine quality (found in
@@ -104,11 +106,9 @@ to perform the analysis: tidyverse (Wickham et al. 2019), knitr (Xie
 (McKinney and others 2010), altair (Sievert 2018), scikit-learn
 (Pedregosa et al. 2011), dplyr (Wickham et al. 2020), readr (Wickham and
 Hester 2020). The code used to perform the analysis and create this
-report can be found here:
-<a href="https://github.com/UBC-MDS/DSCI522_Team_23" class="uri">https://github.com/UBC-MDS/DSCI522_Team_23</a>.
+report can be found here: <https://github.com/UBC-MDS/DSCI522_Team_23>.
 
-Results & Discussion
-====================
+# Results & Discussion
 
 To look at our distributions of the dataset, we started by plotting
 histograms and error bars for all our variables. We hope to find if
@@ -122,19 +122,27 @@ chlorides and density decreases. We did not choose to omit any variables
 in our preliminary analysis as we think that all features that consist
 of our data play an important role in quality prediction.
 
+<div class="figure" style="text-align: center">
+
 <img src="../results/quality_all_variables.png" alt="Figure 1. All Variables vs Quality" width="100%" />
 <p class="caption">
 Figure 1. All Variables vs Quality
 </p>
 
+</div>
+
 Also, we plotted the number of wines by quality class to observe the
 range of quality score in our data. From Figure 2, we can see that most
 of our wine grade centers around 5 to 7.
+
+<div class="figure" style="text-align: center">
 
 <img src="../results/quality_count.png" alt="Figure 2. Number of Wines by Quality Class" width="50%" />
 <p class="caption">
 Figure 2. Number of Wines by Quality Class
 </p>
+
+</div>
 
 We chose to use a simple regression model using the k-nearest neighbors’
 algorithm, ridge regressor and dummy regressor for predictions. To find
@@ -144,37 +152,42 @@ our prediction model. From table 3 and 4, we observed the best optimal k
 was 16, with a validation RMSE of 0.698 and the best alpha value is 10,
 with a validation RMSE of 0.731.
 
-|  mean\_train\_negative\_RMSE|  mean\_validation\_negative\_RMSE|  rank\_cv\_score|  n\_neighbors|
+| mean\_train\_negative\_RMSE | mean\_validation\_negative\_RMSE | rank\_cv\_score | n\_neighbors |
 |----------------------------:|---------------------------------:|----------------:|-------------:|
-|                   -0.6551716|                        -0.6984427|                1|            16|
-|                   -0.6352172|                        -0.6995469|                2|            11|
-|                   -0.5840706|                        -0.7000658|                3|             6|
-|                   -0.6671866|                        -0.7020857|                4|            21|
-|                   -0.6737504|                        -0.7024079|                5|            26|
-|                   -0.6792406|                        -0.7033041|                6|            31|
-|                   -0.6834496|                        -0.7035746|                7|            36|
-|                   -0.6857130|                        -0.7035957|                8|            41|
-|                   -0.6882499|                        -0.7041832|                9|            46|
-|                    0.0000000|                        -0.7907265|               10|             1|
+|                   0.6560234 |                        0.6989526 |               1 |           16 |
+|                   0.6666809 |                        0.6990505 |               2 |           21 |
+|                   0.6355334 |                        0.7009188 |               3 |           11 |
+|                   0.5881781 |                        0.7010307 |               4 |            6 |
+|                   0.6745110 |                        0.7024735 |               5 |           26 |
+|                   0.6800470 |                        0.7032686 |               6 |           31 |
+|                   0.6862980 |                        0.7035100 |               7 |           41 |
+|                   0.6884414 |                        0.7040160 |               8 |           46 |
+|                   0.6836493 |                        0.7044928 |               9 |           36 |
+|                   0.0000000 |                        0.8110912 |              10 |            1 |
 
-|  mean\_train\_negative\_RMSE|  mean\_validation\_negative\_RMSE|  rank\_cv\_score|  alpha|
+Table 2: Cross-validation RMSE Score for kNN
+
+| mean\_train\_negative\_RMSE | mean\_validation\_negative\_RMSE | rank\_cv\_score | alpha |
 |----------------------------:|---------------------------------:|----------------:|------:|
-|                   -0.7281132|                        -0.7306637|                1|  1e+01|
-|                   -0.7280708|                        -0.7307792|                2|  1e+00|
-|                   -0.7280702|                        -0.7307984|                3|  1e-01|
-|                   -0.7280702|                        -0.7308004|                4|  1e-02|
-|                   -0.7280702|                        -0.7308006|                5|  1e-03|
-|                   -0.7291403|                        -0.7312388|                6|  1e+02|
-|                   -0.7381478|                        -0.7396998|                7|  1e+03|
+|                   0.7260544 |                        0.7290343 |               1 | 1e+00 |
+|                   0.7260535 |                        0.7290368 |               2 | 1e-01 |
+|                   0.7260534 |                        0.7290372 |               3 | 1e-02 |
+|                   0.7260534 |                        0.7290372 |               4 | 1e-03 |
+|                   0.7261235 |                        0.7290718 |               5 | 1e+01 |
+|                   0.7275110 |                        0.7302506 |               6 | 1e+02 |
+|                   0.7374066 |                        0.7393335 |               7 | 1e+03 |
+
+Table 3: Cross-validation RMSE Score for Ridge Regressor
 
 By comparing the best validation RMSE scores among our models, we can
 see that the baseline model, dummy regressor performs the worst,
 followed by ridge regression and kNN regressor.
 
-| Dummy Regressor                  |  RMSE value|
+| Dummy Regressor                  | RMSE value |
 |:---------------------------------|-----------:|
-| mean\_train\_negative\_RMSE      |  -0.8681328|
-| mean\_validation\_negative\_RMSE |  -0.8682200|
+| mean\_validation\_negative\_RMSE |  0.8724179 |
+
+Table 4: Cross-validation RMSE Score for Dummy Regressor
 
 We also compare the actual vs prediction score values for our validation
 set on the kNN and Ridge models. From here, we can see that the
@@ -183,22 +196,32 @@ values. One of our concerns when performing regression on our data was
 the predictions fell out of our quality score range, which is between
 0-10.
 
+<div class="figure" style="text-align: center">
+
 <img src="../results/ridge_prediction.png" alt="Figure 3. Ridge Predictions vs Actual" width="50%" />
 <p class="caption">
 Figure 3. Ridge Predictions vs Actual
 </p>
+
+</div>
+
+<div class="figure" style="text-align: center">
 
 <img src="../results/knn_prediction.png" alt="Figure 4. KNN Predictions vs Actual" width="50%" />
 <p class="caption">
 Figure 4. KNN Predictions vs Actual
 </p>
 
+</div>
+
 We then used our selected model with k=16 to perform predictions on our
 test set.
 
-| Model |  test\_split\_RMSE|
+| Model | test\_split\_RMSE |
 |:------|------------------:|
-| k-NN  |          0.7170968|
+| k-NN  |          0.720122 |
+
+Table 5: RMSE Score for Test Sset
 
 Our prediction model performed quite well on test data, with an RMSE
 score of 0.7171 , which is pretty similar to our validation score of the
@@ -215,36 +238,67 @@ with wine quality. The percentage of molecular sulphur dioxide can be
 calculated with the concentration of free SO2 and the pH (Sudraud and
 Chauvet 1985).
 
-References
-==========
+# References
+
+<div id="refs" class="references csl-bib-body hanging-indent">
+
+<div id="ref-docopt" class="csl-entry">
 
 de Jonge, Edwin. 2020. *Docopt: Command-Line Interface Specification
 Language*. <https://CRAN.R-project.org/package=docopt>.
 
+</div>
+
+<div id="ref-ebeler1999linking" class="csl-entry">
+
 Ebeler, Susan E. 1999. “Linking Flavor Chemistry to Sensory Analysis of
 Wine.” In *Flavor Chemistry*, 409–21. Springer.
+
+</div>
+
+<div id="ref-harris2020array" class="csl-entry">
 
 Harris, Charles R., K. Jarrod Millman, St’efan J. van der Walt, Ralf
 Gommers, Pauli Virtanen, David Cournapeau, Eric Wieser, et al. 2020.
 “Array Programming with NumPy.” *Nature* 585 (7825): 357–62.
 <https://doi.org/10.1038/s41586-020-2649-2>.
 
+</div>
+
+<div id="ref-legin2003evaluation" class="csl-entry">
+
 Legin, A, A Rudnitskaya, L Lvova, Yu Vlasov, C Di Natale, and A D’amico.
 2003. “Evaluation of Italian Wine by the Electronic Tongue: Recognition,
 Quantitative Analysis and Correlation with Human Sensory Perception.”
 *Analytica Chimica Acta* 484 (1): 33–44.
 
+</div>
+
+<div id="ref-mckinney2010data" class="csl-entry">
+
 McKinney, Wes, and others. 2010. “Data Structures for Statistical
 Computing in Python.” In *Proceedings of the 9th Python in Science
 Conference*, 445:51–56. Austin, TX.
+
+</div>
+
+<div id="ref-scikit-learn" class="csl-entry">
 
 Pedregosa, F., G. Varoquaux, A. Gramfort, V. Michel, B. Thirion, O.
 Grisel, M. Blondel, et al. 2011. “Scikit-Learn: Machine Learning in
 Python.” *Journal of Machine Learning Research* 12: 2825–30.
 
+</div>
+
+<div id="ref-R" class="csl-entry">
+
 R Core Team. 2020. *R: A Language and Environment for Statistical
 Computing*. Vienna, Austria: R Foundation for Statistical Computing.
 <https://www.R-project.org/>.
+
+</div>
+
+<div id="ref-2018-altair" class="csl-entry">
 
 Sievert, Jacob VanderPlas AND Brian E. Granger AND Jeffrey Heer AND
 Dominik Moritz AND Kanit Wongsuphasawat AND Arvind Satyanarayan AND
@@ -252,24 +306,52 @@ Eitan Lees AND Ilia Timofeev AND Ben Welsh AND Scott. 2018. “Altair:
 Interactive Statistical Visualizations for Python.” *The Journal of Open
 Source Software* 3 (32). <http://idl.cs.washington.edu/papers/altair>.
 
-Sudraud, P, and S Chauvet. 1985. “\[The Anti-Yeast Activity of Molecular
-Sulfur Dioxide \[in Wines\]\].” *Connaissance de La Vigne et Du Vin
+</div>
+
+<div id="ref-sudraud1985anti" class="csl-entry">
+
+Sudraud, P, and S Chauvet. 1985. “\[the Anti-Yeast Activity of Molecular
+Sulfur Dioxide \[in Wines\]\].” *Connaissance de La Vigne Et Du Vin
 (France)*.
+
+</div>
+
+<div id="ref-Python" class="csl-entry">
 
 Van Rossum, Guido, and Fred L. Drake. 2009. *Python 3 Reference Manual*.
 Scotts Valley, CA: CreateSpace.
 
+</div>
+
+<div id="ref-tidyverse" class="csl-entry">
+
 Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy
 D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019.
-“Welcome to the tidyverse.” *Journal of Open Source Software* 4 (43):
-1686. <https://doi.org/10.21105/joss.01686>.
+“Welcome to the <span class="nocase">tidyverse</span>.” *Journal of Open
+Source Software* 4 (43): 1686. <https://doi.org/10.21105/joss.01686>.
+
+</div>
+
+<div id="ref-dplyr" class="csl-entry">
 
 Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2020.
 *Dplyr: A Grammar of Data Manipulation*.
 <https://CRAN.R-project.org/package=dplyr>.
 
+</div>
+
+<div id="ref-readr" class="csl-entry">
+
 Wickham, Hadley, and Jim Hester. 2020. *Readr: Read Rectangular Text
 Data*. <https://CRAN.R-project.org/package=readr>.
 
+</div>
+
+<div id="ref-knitr" class="csl-entry">
+
 Xie, Yihui. 2020. *Knitr: A General-Purpose Package for Dynamic Report
-Generation in R*. <https://yihui.org/knitr/>.
+Generation in r*. <https://yihui.org/knitr/>.
+
+</div>
+
+</div>
