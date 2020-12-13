@@ -109,39 +109,52 @@ analysis and see whether there exists any overfitting or underfitting in
 our model. Also, we would return the confusion matrix of model
 performance on the test data to check for misclassification errors.
 
-## Usage
+Usage
+-----
+
+#### 1. Using Docker
+
+note - the instructions in this section also depends on running this in a unix shell (e.g., terminal or Git Bash)
+
+To replicate the analysis, install Docker. Then clone this GitHub repository and run the following command at the command line/terminal from the root directory of this project:
+
+    docker run --rm -v /$(pwd):/home/rstudio/project dsci522_t23 make -C /home/rstudio/project all
+
+To reset the repo to a clean state, with no intermediate or results files, run the following command at the command line/terminal from the root directory of this project:
+
+    docker run --rm -v /$(pwd):/home/rstudio/project dsci522_t23 make -C /home/rstudio/project clean
+
+#### 2. Without Using Docker
 
 To replicate the analysis, clone this GitHub repository, install the
 [dependencies](#dependencies) listed below, and run the following
-commands at the command line/terminal from the root directory of this
+command at the command line/terminal from the root directory of this
 project:
 
-    # download data
-    python src/Download_file.py --source=https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv --destination=data/winequality-red.csv
-    python src/Download_file.py --source=https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-white.csv --destination=data/winequality-white.csv
-    # pre-process data 
-    python src/Preprocessing.py --raw_white=data/winequality-white.csv --raw_red=data/winequality-red.csv --preprocessed_train=data/winequality-train.csv --preprocessed_test=data/winequality-test.csv
-    # create exploratory data visualizations
-    python src/EDA.py --preprocessed_train=data/winequality-train.csv --quality_count_path=results/quality_count.png --quality_all_variables_path=results/quality_all_variables.png
-    # tune and test model
-    python src/ML_analyses.py --preprocessed_train=data/winequality-train.csv --preprocessed_test=data/winequality-test.csv --results_path=results
-    # render final report
-    Rscript -e "rmarkdown::render('doc/wine_quality_predict_report.Rmd')"
+    make all
 
-## Dependencies
+To reset the repo to a clean state, with no intermediate or results
+files, run the following command at the command line/terminal from the
+root directory of this project:
+
+    make clean
+
+Dependencies
+------------
 
 -   Python 3.8.3 and Python packages:
-    -   ipykernel
+    -   ipykernel==5.1.2
     -   docopt==0.6.2
-    -   pandas==0.24.2
-    -   altair&gt;=4.1.0
-    -   scikit-learn&gt;=0.23.2
+    -   pandas==0.25.1
+    -   altair==4.1.0
+    -   scikit-learn>=0.21.3
+
 -   R version 4.0.3 and R packages:
-    -   knitr==1.29
-    -   tidyverse==1.2.1
-    -   numpy==1.19.1
-    -   dplyr==1.0.2
+    -   knitr==1.30
+    -   tidyverse==1.3.0
+    -   dplyr==2.0.0
     -   readr==1.4.0
+  
 -   GNU make 4.2.1
 
 # References
