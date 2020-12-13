@@ -14,7 +14,7 @@ JiaJie (JOSHUA) Lim, Ling (ELINA) Lin
 # Summary
 
 With the wine quality data, we are attempting to build a regression
-model to help us identify the best white and white variants of the
+model to help us identify the best red and white variants of the
 Portuguese “Vinho Verde” wine. We plan to build a predictive regression
 model that can effectively predict the wine quality score given the
 physicochemical tests variable.
@@ -39,9 +39,9 @@ regressor has a lower RMSE score compared to other models.
 
 | Model            | RMSE.on.train.set |
 |:-----------------|------------------:|
-| dummy\_regressor |             0.872 |
-| Ridge\_regressor |             0.726 |
-| K-nn\_Regressor  |             0.652 |
+| dummy\_regressor |             0.873 |
+| Ridge\_regressor |             0.734 |
+| K-nn\_Regressor  |             0.637 |
 
 Table 1: RMSE Score for All Models Training Set
 
@@ -154,28 +154,28 @@ with a validation RMSE of 0.731.
 
 | mean\_train\_negative\_RMSE | mean\_validation\_negative\_RMSE | rank\_cv\_score | n\_neighbors |
 |----------------------------:|---------------------------------:|----------------:|-------------:|
-|                   0.6560234 |                        0.6989526 |               1 |           16 |
-|                   0.6666809 |                        0.6990505 |               2 |           21 |
-|                   0.6355334 |                        0.7009188 |               3 |           11 |
-|                   0.5881781 |                        0.7010307 |               4 |            6 |
-|                   0.6745110 |                        0.7024735 |               5 |           26 |
-|                   0.6800470 |                        0.7032686 |               6 |           31 |
-|                   0.6862980 |                        0.7035100 |               7 |           41 |
-|                   0.6884414 |                        0.7040160 |               8 |           46 |
-|                   0.6836493 |                        0.7044928 |               9 |           36 |
-|                   0.0000000 |                        0.8110912 |              10 |            1 |
+|                   0.6443910 |                        0.7032121 |               1 |           11 |
+|                   0.5963137 |                        0.7046002 |               2 |            6 |
+|                   0.6656110 |                        0.7064989 |               3 |           16 |
+|                   0.6771219 |                        0.7072481 |               4 |           21 |
+|                   0.6843655 |                        0.7087261 |               5 |           26 |
+|                   0.6914291 |                        0.7090271 |               6 |           36 |
+|                   0.6937821 |                        0.7098824 |               7 |           41 |
+|                   0.6959995 |                        0.7099454 |               8 |           46 |
+|                   0.6878570 |                        0.7099662 |               9 |           31 |
+|                   0.0000000 |                        0.8076507 |              10 |            1 |
 
 Table 2: Cross-validation RMSE Score for kNN
 
 | mean\_train\_negative\_RMSE | mean\_validation\_negative\_RMSE | rank\_cv\_score | alpha |
 |----------------------------:|---------------------------------:|----------------:|------:|
-|                   0.7260544 |                        0.7290343 |               1 | 1e+00 |
-|                   0.7260535 |                        0.7290368 |               2 | 1e-01 |
-|                   0.7260534 |                        0.7290372 |               3 | 1e-02 |
-|                   0.7260534 |                        0.7290372 |               4 | 1e-03 |
-|                   0.7261235 |                        0.7290718 |               5 | 1e+01 |
-|                   0.7275110 |                        0.7302506 |               6 | 1e+02 |
-|                   0.7374066 |                        0.7393335 |               7 | 1e+03 |
+|                   0.7336325 |                        0.7371091 |               1 | 1e+01 |
+|                   0.7335934 |                        0.7371607 |               2 | 1e+00 |
+|                   0.7335929 |                        0.7371713 |               3 | 1e-01 |
+|                   0.7335929 |                        0.7371724 |               4 | 1e-02 |
+|                   0.7335929 |                        0.7371725 |               5 | 1e-03 |
+|                   0.7346083 |                        0.7377460 |               6 | 1e+02 |
+|                   0.7434954 |                        0.7458514 |               7 | 1e+03 |
 
 Table 3: Cross-validation RMSE Score for Ridge Regressor
 
@@ -185,7 +185,7 @@ followed by ridge regression and kNN regressor.
 
 | Dummy Regressor                  | RMSE value |
 |:---------------------------------|-----------:|
-| mean\_validation\_negative\_RMSE |  0.8724179 |
+| mean\_validation\_negative\_RMSE |   0.873566 |
 
 Table 4: Cross-validation RMSE Score for Dummy Regressor
 
@@ -219,7 +219,7 @@ test set.
 
 | Model | test\_split\_RMSE |
 |:------|------------------:|
-| k-NN  |          0.720122 |
+| k-NN  |          0.688928 |
 
 Table 5: RMSE Score for Test Sset
 
@@ -228,15 +228,15 @@ score of 0.7171 , which is pretty similar to our validation score of the
 KNN regressor.
 
 There are a few suggestions to improve our model. First, we could try
-more power regression models such as Random Forests Algorithm. Also,
-given a relatively small number of features in the dataset, we could use
-forward selection to reduce the number of features. We could also
-engineer new features. One possible feature is the percentage of
-molecular sulphur dioxide which is the active form that acts as
-germicide and antioxidant in winemaking and is potentially associated
-with wine quality. The percentage of molecular sulphur dioxide can be
-calculated with the concentration of free SO2 and the pH (Sudraud and
-Chauvet 1985).
+more power regression models such as Random Forests Algorithm and model
+incluing SVM. Also, given a relatively small number of features in the
+dataset, we could use forward selection to reduce the number of
+features. We could also engineer new features. One possible feature is
+the percentage of molecular sulphur dioxide which is the active form
+that acts as germicide and antioxidant in winemaking and is potentially
+associated with wine quality. The percentage of molecular sulphur
+dioxide can be calculated with the concentration of free SO2 and the pH
+(Sudraud and Chauvet 1985).
 
 # References
 
